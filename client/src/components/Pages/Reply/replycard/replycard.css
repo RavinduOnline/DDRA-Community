@@ -1,0 +1,37 @@
+.replycard-mainbox {
+    border-style: solid;
+    border:4px;
+    margin: auto;
+    margin-top: 12px;  
+    border-color:black;
+    padding: 12px;   
+  }
+
+  .replycard-mainbox:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .replycard-mainbox i{
+    float: right;
+    margin-right:30px;
+    color: red;
+  }
+
+  .replycard-mainbox h5{
+    float: right;
+    margin:-50px 28px 20px 20px;   
+  }
+  
+  .replycard-container {
+    padding: 2px 16px;
+  }
+  
+  .replycard-container h4{
+    color: #001925;
+  }
+
+  .replycard-container a{
+    text-decoration: none;
+  }
+
+

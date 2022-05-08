@@ -1,0 +1,29 @@
+.signup-details {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-details h1 {
+    font-weight: 800;
+}
+
+.signup-button {
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.signup-td {
+    width: 55%;
+}
+
+.signup-input input{
+    border-radius: 5px;
+}
+
+.signup-input input{
+    margin: 0px 5px 0px 5px;
+}
+

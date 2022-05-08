@@ -1,0 +1,67 @@
+
+/* Common CSS Box Start */
+
+.main-body-container{
+    height: max-content;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30vh;
+    padding: 15px;
+}
+
+.Home-sub-body-hr-line {
+    height: 0.3vh;
+    background-color: #001925;
+}
+
+/* Common CSS Box End  */
+
+.Home-sub-body-container h1{
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.Home-detail-box-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 5vh;
+}
+
+.Home-detail-box{
+    min-height: 12vh;
+    min-width: 180px;
+    color: white;
+    padding: 3px 3px 3px 20px;
+    border-radius: 5px;
+
+}
+
+.Home-detail-box h2{
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0px 0px 8% 0px;
+}
+
+.Home-detail-box p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0px;
+}
+
+.User-box{
+    background-color: #469CF4;
+}
+
+.Topic-box{
+    background-color: #77CB6F;
+}
+
+.Reply-box{
+    background-color: #F5BF52;
+}

@@ -1,0 +1,23 @@
+.footer-box{
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #001925;
+   color: white;
+   text-align: center;
+   text-transform: uppercase;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000;
+   padding: 5px;
+}
+
+.footer-box a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-box span{
+    font-weight: 700;
+}

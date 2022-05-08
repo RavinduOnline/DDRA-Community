@@ -1,0 +1,41 @@
+.forumview-topic{
+    display: flex;
+    padding: 20px 20px 0px 20px;
+}
+
+.forumview-topic h1{
+    margin-bottom: 5px;
+    font-weight: 700;
+    font-size: 30px;
+    color: #001925;
+}
+
+.forumview-topic-txt{
+    margin-right: 0px;
+    margin-left: 40%;  
+}
+
+.forumview-topic-desc{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 20px 10px 20px;
+    font-size: 0.9rem;
+}
+
+.forumview-btn-container{
+    margin:10px 10px 10px 10px;
+    position: relative;  
+  }
+
+  .forumview-topic-txt h6{ 
+      margin-top: 10px; 
+    font-size: 16px;
+    position: absolute;
+    font-weight: 750;
+  }
+
+  .forumview-topic-txt-reply{
+    float: left;
+    text-align: left;
+    left: 4rem;
+  }

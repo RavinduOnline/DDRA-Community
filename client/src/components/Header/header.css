@@ -1,0 +1,24 @@
+
+.header-main-box{
+    min-height: 10vh;
+    background-color: #001925 ;
+    display: flex;
+    position: sticky;
+    top: 0px;
+    z-index: 10000;
+    
+}
+
+.header-logo{
+    max-height: 8vh ;
+}
+
+.header-profile-a{
+    text-decoration: none;
+    color: white;
+}
+
+.header-profile-pic{
+    height: 5vh;
+    margin-right: 5px;
+}

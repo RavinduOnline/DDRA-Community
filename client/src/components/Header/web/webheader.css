@@ -1,0 +1,41 @@
+.web-header-main-box{
+    margin-right: 15px;
+}
+
+.web-menu-item{
+    font-size: 20px;
+    margin-right: 16px;
+    font-weight: 700;
+}
+
+.web-menu-user-box{
+    border: 4px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: white;
+    padding: 5px 10px;
+
+}
+
+.web-menu-user-name{
+    display: flex;
+    align-items: center;
+}
+
+
+.web-menu-user-name-a{
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.header-profile-pic{
+    border: 1px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: white;
+}
+
+ 
+

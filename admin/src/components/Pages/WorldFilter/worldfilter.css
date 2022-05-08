@@ -1,0 +1,32 @@
+.word-manage-top-items{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4vh;
+}
+
+.word-manage-top-items select{
+    width: 16%;
+    font-size: 16px;
+    background-color: #044F74;
+    color: white;
+    font-weight: 700;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.word-manage-top-items button{
+    width: 16%;
+    font-size: 16px;
+    background-color: green;
+    color: white;
+    font-weight: 700;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.action-edit-btn{
+    margin: 5px;
+    min-width: 10vh;
+}

@@ -1,0 +1,194 @@
+.usersetting-button {
+    border-radius: 10px;
+    justify-content: center;
+    float: right;
+    margin-right:30px;
+    margin-top: -40px;
+}
+
+.usersetting-mainbox {
+    border-style: solid;
+    border:4px;
+    margin: 12px 50px 12px 50px; 
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
+    border-color:black;
+    padding: 12px;  
+  }
+
+  .usersetting-mainbox:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+
+  .usersetting-container {
+    padding: 2px 16px;
+  }
+  
+  .usersetting-container h4{
+    color: #001925;
+    font-weight: 700;
+  }
+
+  .usersetting-container a{
+    text-decoration: none;
+  }
+
+  .usersetting-table{
+      width: 100%;
+  }
+
+  .usersetting-td{
+      width: 60%;
+  }
+
+  /* Start Filter buttons */
+  .usersetting-filter-container{
+      margin: 30px 40px 30px 30px;
+  }
+  .usersetting-filter-btn {
+    border: solid;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    background-color: #19224D;
+    border-radius: 10px;
+    border-color: white;
+    border-width: 5px;
+    width: 180px;
+    height: 52px;
+    float: right;
+    padding: 10px 12px; 
+    
+  }
+  
+  .usersetting-filter-btn:hover {
+    background-color: #233381;
+  }
+  
+  .usersetting-filter-btn button:active{
+    color: #FFFFFF;
+    background: #858585;
+    outline: none;
+  }
+/* End  Filter buttons */
+
+/* start search bar */
+#usersetting-searchNav{
+    background-color: #E3E3E3;
+    color: #707070;
+    font-weight: 700;
+    border-color: #707070;
+    width: 95%;
+    height: 40px;
+    align-items: center;
+    margin: 20px 20px 5px 20px;
+    border-radius: 5px;
+  }
+  /* end search bar */
+
+  .usersetting-topic-txt h6{  
+    font-size: 16px;
+    top: 325px;
+    position: absolute;
+    font-weight: 750;
+  }
+  
+  .usersetting-topic-txt-topic{
+    float: left;
+    text-align: left;    
+  }
+
+  .usersetting-topic-txt-reply{
+    float: right;
+    text-align: right;
+    right: 4rem;
+  }
+
+  .usersetting-card-container{
+    margin:0px 10px;
+}
+
+.usersetting-details {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.usersetting-details table {
+    width: 60%;
+}
+
+.usersetting-button-1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 15px;
+}
+
+.usersetting-button-1 button {
+    width: 300px;
+    margin: 5px;
+    background-color: #0c9ad7;
+}
+
+.usersetting-button-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 15px;
+}
+
+.usersetting-button-2 button {
+    width: 300px;
+    margin: 5px;
+    background-color: #26eb0c;
+}
+
+.usersetting-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.usersetting-cen {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 50%;
+    margin: auto;
+}
+
+.usersetting-cen-1 {
+    display: flex;
+    margin-right:20px ;
+    margin: 10px;
+    
+}
+.usersetting-cen-1 img{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.usersetting-cen-2 {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.usersetting-main-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+
+}

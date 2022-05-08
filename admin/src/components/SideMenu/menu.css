@@ -1,0 +1,76 @@
+
+.sidemenu-mainbox{
+	position:relative;
+	height:100vh;
+    background: #001925;
+	height:100vh;
+	width:30vh;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:999;
+	outline:none;
+    color: white;
+}
+
+.sidemenu-logo{
+        max-height: 10vh ;
+        margin: 10px;
+}
+
+.sidemenu-avatar-box{
+    padding:2em 0.5em;
+    text-align:center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidemenu-avatar-sub-box{
+    border: 2px solid white;
+    border-radius: 5px 10px;
+    width: 80% ;
+    margin: 5px;
+    padding: 3px;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidemenu-avatar-sub-box p{
+    font-weight:500;
+    color: white;
+    align-items: center;
+    display: flex;
+    margin: 5px;
+}
+
+.sidemenu-avatar-sub-box img{
+    width: 30px;
+    border-radius:50%;
+    overflow:hidden;
+    border:1px solid white;
+    box-shadow: 0 0 4px rgba(255,255,255,0.2);
+    margin: 2px;
+}
+
+.sidemenu-avatar-sub-box a{
+    margin: 0px 3px;
+}
+
+.side-menu-item{
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.side-menu-a-div :hover{
+    background-color: #044F74 ;
+    width: 100%;
+}

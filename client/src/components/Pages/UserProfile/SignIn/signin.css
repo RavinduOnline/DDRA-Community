@@ -1,0 +1,61 @@
+
+.sigin-form-body{
+  height: 87vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./images/HD-login.jpeg");
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.sigin-form-body-box{
+  background: rgb(255, 255, 255);
+    filter: alpha(opacity=80);
+    /* IE */
+    -moz-opacity: 0.9;
+    /* Mozilla */
+    opacity: 0.9;
+    /* CSS3 */
+    position: absolute;
+    padding: 15px;
+    width: 25%;
+    height: 40vh;
+}
+
+.sigin-form-box{
+  position: relative;
+  padding: 15px;
+  width: 25%;
+  height: 40vh;
+}
+
+.sigin-form-box h4{
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.sigin-form-box input{
+  width: 100%;
+  height: 4vh;
+}
+
+.sigin-form-box label{
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.sigin-form-box button{
+  padding: 5px;
+  display: flex;
+  float: right;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  border: none;
+  background-color: #044F74;
+  color: white;
+  font-weight: 500;
+  border-radius: 5px;
+}
+

@@ -1,0 +1,111 @@
+.profile-button {
+    border-radius: 10px;
+    justify-content: center;
+    float: right;
+    margin-right:30px;
+    margin-top: -40px;
+}
+
+.profile-mainbox {
+    border-style: solid;
+    border:4px;
+    margin: 12px 50px 12px 50px; 
+    box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
+    border-color:black;
+    padding: 12px;  
+  }
+
+  .profile-mainbox:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+
+  .profile-container {
+    padding: 2px 16px;
+  }
+  
+  .profile-container h4{
+    color: #001925;
+    font-weight: 700;
+  }
+
+  .profile-container a{
+    text-decoration: none;
+  }
+
+  .profile-table{
+      width: 100%;
+  }
+
+  .profile-td{
+      width: 60%;
+  }
+
+  /* Start Filter buttons */
+  .profile-filter-container{
+      margin: 30px 40px 30px 30px;
+  }
+  .profile-filter-btn {
+    border: solid;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: white;
+    background-color: #19224D;
+    border-radius: 10px;
+    border-color: white;
+    border-width: 5px;
+    width: 180px;
+    height: 52px;
+    float: right;
+    padding: 10px 12px; 
+    
+  }
+  
+  .profile-filter-btn:hover {
+    background-color: #233381;
+  }
+  
+  .profile-filter-btn button:active{
+    color: #FFFFFF;
+    background: #858585;
+    outline: none;
+  }
+/* End  Filter buttons */
+
+/* start search bar */
+#profile-searchNav{
+    background-color: #E3E3E3;
+    color: #707070;
+    font-weight: 700;
+    border-color: #707070;
+    width: 95%;
+    height: 40px;
+    align-items: center;
+    margin: 20px 20px 5px 20px;
+    border-radius: 5px;
+  }
+  /* end search bar */
+
+  .profile-topic-txt h6{  
+    font-size: 16px;
+    top: 325px;
+    position: absolute;
+    font-weight: 750;
+  }
+  
+  .profile-topic-txt-topic{
+    float: left;
+    text-align: left;    
+  }
+
+  .profile-topic-txt-reply{
+    float: right;
+    text-align: right;
+    right: 4rem;
+  }
+
+  .profile-card-container{
+    margin:0px 10px;
+}

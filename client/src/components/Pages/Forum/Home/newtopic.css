@@ -1,0 +1,136 @@
+.newtopic-forum{
+    display: flex;
+    width: 100%;
+    background-color: white;
+    height: 90vh;
+    justify-content: center;
+    z-index: 700;
+}
+
+.newtopic-forum-container{
+    padding: 30px 15px 30px 15px;
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 100%;   
+}
+
+.newtopic-head-title{
+    display: flex;
+    width: 100%;
+}
+
+.newtopic-head-title h1{
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 30px;
+    color: #001925;
+}
+
+.newtopic-question-container{
+    display: flex;
+    padding: 15px;
+    background-color: rgb(245, 245, 245);
+    border: black;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 4px 10px 0 rgba(66,42,42,0.1);
+}
+
+.newtopic-question{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.newtopic-question-option{
+    flex-direction: column;
+    width: 100%;
+}
+
+.newtopic-title{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    font-size: 0.9rem;
+}
+
+.newtopic-title input{
+    margin: 5px 0px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    outline: none;
+    font-style: italic;
+}
+
+.newtopic-title input::placeholder{
+    color: rgb(0, 0, 0);  
+}
+
+.newtopic-title-title input{
+    min-width: 70%;
+    font-weight: 600;
+}
+
+.newtopic-title input:focus{
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: 0 1px 3px 0 black;
+}
+
+.newtopic-title select{
+    float: right;
+    padding: 10px;
+    font-weight: 500;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+.newtopic-react-quill{
+    margin: 10px 0px;
+    height: auto;
+    border-radius: 10px;    
+}
+
+/*
+.quill{
+    height: 100%;
+}
+
+.ql-editor{
+    height: 200px;
+}*/
+
+
+.newtopic-button button{
+    border:solid;
+    border-color: white;
+    border-width: 1px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    width: 180px;
+    height: 52px;
+    cursor: pointer;
+    color: white;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+.newtopic-button-create{ 
+    float: right;
+    margin-right: 40px;
+    background-color: #19224D;   
+}
+
+.newtopic-button-create:hover{
+    background-color: #233381;
+  }
+
+.newtopic-button-close{ 
+    float: right;
+    margin-right: 40px;
+    background-color: #ea4335;
+}
+
+.newtopic-button-close:hover{
+    background-color: #e95144;
+  }

@@ -1,0 +1,46 @@
+
+.replycard-react-quill{
+    margin: 10px 0px;
+    height: auto;
+    border-radius: 10px;    
+}
+
+.replycard-button button{
+    border:solid;
+    border-color: white;
+    border-width: 1px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    width: 180px;
+    height: 52px;
+    cursor: pointer;
+    color: white;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+.replycard-button-create{ 
+    float: right;
+    margin-right: 40px;
+    background-color: #19224D;   
+}
+
+.replycard-button-create:hover{
+    background-color: #233381;
+  }
+
+.replycard-button-close{ 
+    float: right;
+    margin-right: 40px;
+    background-color: #ea4335;
+}
+
+.replycard-button-close:hover{
+    background-color: #e95144;
+  }
+
+  .replyupdate-marjin{
+      margin-bottom: 15px;
+      height: 80vh;
+  }
