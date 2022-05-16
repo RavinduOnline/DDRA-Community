@@ -11,83 +11,68 @@ import {selectUser} from '../../../../feature/userSlice'
 import Editor from "react-quill/lib/toolbar";
 
 
-export default function home() {
+export default function Home() {
 
-  const user = useSelector(selectUser);
-  var toolbarOptions = [
-    ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block"],
-
-    [{ header: 1 }, { header: 2 }], // custom button values
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-    [{ direction: "rtl" }], // text direction
-
-    [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }],
-    [{ align: [] }],
-
-    ["clean"], // remove formatting button
-  ];
-  Editor.modules = {
-    syntax: false,
-    toolbar: toolbarOptions,
-    clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
-      matchVisual: false,
-    },
-  };
-
-  Editor.formats = [
-    "header",
-    "font",
-    "size",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-    "video",
-  ];
+const[Title, setTitle] = useState("")
+const[FCategory, setFCategory]= useState("")
+const[MiniDescription, setMiniDescription] = useState("")
+const [userInfo, setuserInfo] = useState({description: ''});
 
 
-const[Title, setTitle] =React.useState("")
-const[FCategory, setFCategory]= React.useState("")
-const[Description, setDescription] = React.useState("")
-const[Body, setBody] = React.useState("")
 
-const handleQuill = (value) => {
-  setBody(value)
-}
 
-const handleSubmit = async (e) =>{
-  e.preventDefault()
+    const ondescription = (value) => {
+      console.log(value)
+      setuserInfo({ ...userInfo,
+        description:value
+      });
+    } 
+    const TopicCreate = () =>{
 
-  if(Title !=="" && Body !==""){
-    const bodyJSON = {
-        Title:Title,
-        FCategory:FCategory,
-        Description:Description,
-        Body:Body,
-        user:user
-    }
-    await axios.post('/forumcreate', bodyJSON)
-    .then((res)=>{
-      alert('Forum Added Successfully')
-    }).catch((err) => {
-      console.log(err)
+      if(!Title || !FCategory || !MiniDescription || !userInfo ){
+              
+        alert("Fill All")
+        return
+      }
+      if(userInfo.description.length < 50){
+        alert('Required, Add description minimum length 50 characters');
+        return;
+      }
+
+      fetch("/forumcreate",{
+        method:"post",
+        headers:{
+            "Content-Type":"application/json",
+        },
+        body:JSON.stringify({
+
+          Title:Title, 
+          FCategory:FCategory, 
+          Description:MiniDescription, 
+          Body:userInfo.description
+
+        })
+    }).then(res=>res.json())
+    .then(data => {
+
+        if(data.error){ 
+              alert("Error" + data.error)
+        }
+        else{
+          alert("Error" + data.message)
+          setTimeout(function(){
+            window.location.replace('/');
+          },1000);
+        }
+          
+
+      console.log("data create -", data)
+    }).catch((err)=>{
+      console.log("Error - ", err)
     })
-  }
-}
+  
+    }
+    
 
   return (
     <div>
@@ -111,8 +96,8 @@ const handleSubmit = async (e) =>{
                             type="text" 
                             placeholder='Add Question Title'/>
                       
-                        <select>
-                            <option value={FCategory} onChange ={(e) =>setFCategory(e.target.value)} selected="selected">Select forum category</option>
+                        <select onChange ={(e) =>setFCategory(e.target.value)}>
+                            <option value={FCategory}  selected="selected">Select forum category</option>
                             <option value="General" >General</option>
                             <option value="JavaScript" >JavaScript</option>
                             <option value="HTML/CSS" >HTML/CSS</option>
@@ -128,37 +113,44 @@ const handleSubmit = async (e) =>{
                   <div className='newtopic-question-option'> 
                     <div className='newtopic-title'>
                       <input 
-                          value = {Description} 
-                          onChange ={(e) =>setDescription(e.target.value)} 
+
                           type="text" 
                           placeholder='Mini Description' 
-                          maxLength="100"/>
+                          maxLength="100"
+                          value={MiniDescription}
+                          onChange={(e) => setMiniDescription(e.target.value)}
+                          />
                     </div>
                   </div>
 
                   <div className='newtopic-question-option'> 
                     <div className='newtopic-title'>
                       <small>Include all information someone would need to answer your question</small>
-                      <ReactQuill 
-                          value={Body} 
-                          onChange ={handleQuill} 
-                          modules={Editor.modules}
-                          className="newtopic-react-quill" 
-                          theme='snow'/>
+                          <div className='react-quill-box'>
+                            <ReactQuill 
+                                theme="snow"
+                                value={userInfo.description}
+                                onChange={ondescription}
+                                modules={Editor.modules}
+                                className="newtopic-react-quill" 
+                                placeholder={"Include all information someone would need to answer your question..."}
+                                />
+                          </div>
                       </div>
+                      
                   </div>
 
 
                 </div>
               </div>
               <div className='newtopic-button'>
-              <a href ="/view-forum">
+
                 <button
                     type='submit'
-                    onClick={handleSubmit}
+                    onClick={() => TopicCreate() }
                     className='newtopic-button-create'>Create
                 </button>
-              </a>
+
                 <a href ="/"><button className='newtopic-button-close'>Close</button></a>
               </div>
 

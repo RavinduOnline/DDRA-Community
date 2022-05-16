@@ -134,3 +134,13 @@
 .newtopic-button-close:hover{
     background-color: #e95144;
   }
+
+.react-quill-box{
+    height: 29vh;
+    background-color: white;
+}
+
+.newtopic-react-quill{
+    height: 22vh;
+    background-color: white;
+}
