@@ -11,6 +11,7 @@ import UpdateProfile from './components/Pages/UserProfile/UpdateProfile/updatepr
 import NewForum from './components/Pages/Forum/Home/newtopic';
 import ForumView from './components/Pages/Forum/ForumView/forumview';
 import ReplyUpdate from './components/Pages/Reply/replyupdate/replyupdate';
+import Test from './components/test';
 import NotFound from './components/Pages/404/notfound';
 
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="/add-forum" element={<NewForum/>}/>
               <Route path="/view-forum" element={<ForumView/>}/>
               <Route path="/replyupdate" element={<ReplyUpdate/>}/>
+              <Route path="/test" element={<Test/>}/>
               <Route path="*" element={<NotFound/>}/>
 
         </Routes>

@@ -16,7 +16,7 @@ export default function Home() {
 const[Title, setTitle] = useState("")
 const[FCategory, setFCategory]= useState("")
 const[MiniDescription, setMiniDescription] = useState("")
-const [userInfo, setuserInfo] = useState({description: ''});
+const [userInfo, setuserInfo] = useState({description:''});
 
 
 
@@ -34,7 +34,7 @@ const [userInfo, setuserInfo] = useState({description: ''});
         alert("Fill All")
         return
       }
-      if(userInfo.description.length < 50){
+      if(userInfo.description.length < 10){
         alert('Required, Add description minimum length 50 characters');
         return;
       }
@@ -48,7 +48,7 @@ const [userInfo, setuserInfo] = useState({description: ''});
 
           Title:Title, 
           FCategory:FCategory, 
-          Description:MiniDescription, 
+          Description:MiniDescription,
           Body:userInfo.description
 
         })
