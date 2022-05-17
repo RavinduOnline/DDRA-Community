@@ -1,11 +1,26 @@
+import { useState, useEffect } from "react";
 import React from 'react'
 import './signupforum.css'
 
-export default function signupforum() {
+export default function Signupforum() {
+
+    const [fName,setFName] = useState("")
+    const [lName,setLName] = useState("")
+    const [email,setEmail] = useState("")
+    const [gender,setGender] = useState("")
+    const [interested,setInterested] = useState("")
+    const [country,setCountry] = useState("")
+    const [password,setPassword] = useState("")
+    const [rePassword,setRePassword] = useState("")
+
+  const SignupGetData = () =>{
+    console.log(gender)
+  }
+
   return (
     <div> 
 
-        <form action='/signin'>
+        <div>
           <div className='signup-details'>
             <h1>Welcome to.........!</h1>
                 <hr/>
@@ -13,28 +28,69 @@ export default function signupforum() {
                 <table>
                   <tr>
                     <td className='signup-td'><label for="fname"><b>First Name<br/></b></label></td>
-                    <td className='signup-input'><input type="text" placeholder="Enter First Name" name="fname" required/></td><br/><br/>
+                    <td className='signup-input'>
+                      <input type="text" 
+                        placeholder="Enter First Name" 
+                        name="fname" 
+                        value={fName}
+                          onChange={(e) => setFName(e.target.value)}
+                        required/>
+                    </td><br/><br/>
                   </tr>
 
                   <tr>
                     <td className='signup-td'><label for="lname"><b>Last Name<br/></b></label></td>
-                    <td className='signup-input'><input type="text" placeholder="Enter Last Name" name="lname" required/></td><br/><br/>
+                    <td className='signup-input'>
+                      <input type="text" 
+                        placeholder="Enter Last Name" 
+                        name="lname" 
+                        value={lName}
+                          onChange={(e) => setLName(e.target.value)}
+                        required/>
+                    </td><br/><br/>
                   </tr>
 
                   <tr>
                     <td className='signup-td'><label for="email"><b>Email<br/></b></label></td>
-                    <td className='signup-input'><input type="text" placeholder="Enter Email" name="email" required/></td><br/><br/>
+                    <td className='signup-input'>
+                      <input type="text" 
+                        placeholder="Enter Email" 
+                        name="email" 
+                        value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                        required/>
+                    </td><br/><br/>
                   </tr>
 
                   <tr>
                     <td className='signup-td'><label for="gender"><b>Gender<br/></b></label></td>
                     
                     <td className='signup-input'>
-                      <input type="radio" id="male" name="male" value="male"/>
+                      <input 
+                        type="radio" 
+                        id="male" 
+                        name="gender" 
+                        value={gender}
+                          onChange={(e) => setGender(e.target.value)}/>
+
                       <label for="male">Male</label>
-                      <input type="radio" id="female" name="female" value="female"/>
+
+                      <input 
+                        type="radio" 
+                        id="female" 
+                        name="gender" 
+                        value={gender}
+                          onChange={(e) => setGender(e.target.value)}/>
+
                       <label for="female">Female</label>
-                      <input type="radio" id="other" name="other" value="other"/>
+
+                      <input 
+                        type="radio" 
+                        id="other" 
+                        name="gender" 
+                        value={gender}
+                          onChange={(e) => setGender(e.target.value)}/>
+
                       <label for="other">Other</label>
                     </td><br></br><br/>
                   </tr>
@@ -80,7 +136,7 @@ export default function signupforum() {
           </div>
 
                 
-        </form>
+        </div>
 
     </div>
   )
