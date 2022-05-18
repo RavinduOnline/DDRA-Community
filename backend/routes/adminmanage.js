@@ -86,7 +86,7 @@ router.post("/adminmanage/wordfilter/create", async (req, res) => {
 router.get('/adminmanage/wordfilter', async (req,res)=>{
     
     try{
-        WordFilter.find().then((WordsList)=>{
+        WordFilter.find().sort('-createdAt').then((WordsList)=>{
             res.status(200).json(WordsList)
         }).catch((err)=>{
             console.log(err);
@@ -108,9 +108,9 @@ router.put('/adminmanage/wordfilter/update/:id', async (req,res)=>{
         }
 
         const lowerCaseWord = word.toLowerCase();
-        let findWord = await WordFilter.findOne({ word:lowerCaseWord });
+        let findWord = await WordFilter.findOne({ word:lowerCaseWord});
         if (findWord) {
-          return res.status(400).json({ error: "This Word already exists" });
+          return res.status(400).json({ error: "This Word already exists with Same Category" });
         }
 
         else{
@@ -145,15 +145,31 @@ router.delete('/adminmanage/wordfilter/delete/:id',(req,res)=>{
 
         if(err){
             return res.status(400).json({
-                message:"Wordfilter Delete unsuccessfully" ,err
+                message:"Word Deleting Process has Error" ,err
             });
         }
 
         return res.status(200).json({
-            message:"Wordfilter Delete successfully",deletedWordfilter
+            message:"Word Deleted Successfully",deletedWordfilter
         });
     });
-});  
+}); 
+
+//Get Specific Word
+router.get('/adminmanage/word/:id', async (req,res)=>{
+    
+    try{
+        WordFilter.findById(req.params.id).then((Word)=>{
+            res.status(200).json(Word)
+        }).catch((err)=>{
+            console.log(err);
+            return res.status(400).json({ error: "Something has error" });
+        })
+    }catch{
+        return res.status(400).json({ error: "Something has error" });
+    }
+
+});
 
 // *************** Admin Manage WordFiltering REST Methods End **************
 
