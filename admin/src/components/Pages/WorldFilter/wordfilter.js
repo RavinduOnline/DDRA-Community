@@ -17,6 +17,10 @@ export default function Wordfilter() {
   const [wordsDetails , setWordDetails] = useState([]);
   const [getWordForum , setGetWordForum] = useState("");
   const [getWordCategory , setGetWordCategory] = useState("");
+  const [SerchWord , setSerchWord] = useState("");
+  const [SelectCategory , setSelectCategory] = useState("");
+  const [searchText , setSearchText ]  = useState("")
+
 
 
 
@@ -27,6 +31,20 @@ export default function Wordfilter() {
   useEffect(() => {
     retrieveWords();
   }, []);
+
+  useEffect(() => {
+        if(SerchWord){
+          setSearchText(SerchWord)
+          handleSearchArea();
+        }
+        if(SelectCategory){
+          setSearchText(SelectCategory)
+          handleSearchArea();
+        }
+        if(SerchWord == "" && SelectCategory == "" ){
+          retrieveWords();
+        }
+  }, [SerchWord , SelectCategory]);
 
 
   const retrieveWords = () =>{
@@ -141,6 +159,39 @@ export default function Wordfilter() {
               })
     }
 
+    /*--------------------------------- Search FU Start -------------------------------*/
+          
+       const   handleSearchArea = () =>{
+                  
+              fetch("/adminmanage/wordfilter").then(res=>res.json())
+                    .then(result =>{
+                      if(result){
+                        if(SerchWord){
+                        setSelectCategory("")
+                        filterData(result,SerchWord.toLowerCase());
+                        }
+                        else if(SelectCategory){
+                          filterData(result,SelectCategory.toLowerCase());
+                        }
+                      }
+
+                    });
+        }
+
+        const filterData = (words,searchKey) => {
+
+          const result = words.filter((words) =>
+                words.word.toLowerCase().includes(searchKey)||
+                words.wcategory.toLowerCase().includes(searchKey)
+            );
+             setWord(result)
+      
+        }
+
+
+      /*--------------------------------- Search FU End -------------------------------*/
+
+
     
 
 
@@ -219,10 +270,18 @@ export default function Wordfilter() {
           </div>
 
           <div className='word-manage-top-items'>
-             <input className='topic-manage-search' type="text" placeholder="Search.." />
+             <input 
+              className='topic-manage-search' 
+              type="text" 
+              placeholder="Search..." 
+              value={SerchWord}
+              onChange={(e) => setSerchWord(e.target.value)}
+              />
 
-              <select name="cars" id="cars">
-                    <option value="" selected disabled hidden> Select Category</option>
+              <select  
+                value={SelectCategory}
+                onChange={(e) => setSelectCategory(e.target.value)} >
+                    <option value="" selected  >All Category</option>
                     <option value="Self-Destructive">Self-Destructive</option>
                     <option value="Sexuality">Sexuality</option>
                     <option value="Obscene">Obscene</option>
