@@ -118,7 +118,14 @@
 
 #signin-alert{
     display: none;
-    background-color: #f44336; /* Red */
-    color: white;
+    background-color: #ffffff; /* Red */
+    font-weight: 700;
+    color: tomato;
+    border: solid red;
     margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.forget-password{
+    font-weight: 700;
 }

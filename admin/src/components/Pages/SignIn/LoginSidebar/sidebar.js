@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Link} from 'react-router-dom'
 import './sidebar.css'
 import DarkLogo from '../../../SideMenu/DDRS-Logo_DarkBlue.png'
 
@@ -17,7 +18,7 @@ export default function Sidebar() {
         if(!emailAddress || !password){
           
           document.getElementById("signin-alert").style.display = "flex";
-          document.getElementById("signin-alert").innerHTML = "Please fill all the field!";
+          document.getElementById("signin-alert").innerHTML = "⚠️  &nbsp; &nbsp;Please fill all the field!";
           return
         }
         
@@ -112,8 +113,8 @@ export default function Sidebar() {
                                           </div>
                                   
                                           <div className="side-bar-item">
-                                                  <a className='nav-link' href="/forgotpassword">
-                                                      Forget Password
+                                                  <a className='nav-link forget-password' href="/forgotpassword">
+                                                      Forgot Password
                                                   </a>
                                           </div>
                                           
