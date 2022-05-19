@@ -9,7 +9,7 @@ router.get('/forum', (req, res)=>{
 
 // Create
 router.post("/forumcreate", async (req, res) => {
-    const {Title, FCategory, Description, Body } = req.body;
+    const {Title, FCategory, Description, Body, Pic} = req.body;
   try {
         if(!Title || !FCategory || !Description || !Body){
             return res.status(422).json({ error: "Please fill all the field" });
@@ -20,6 +20,7 @@ router.post("/forumcreate", async (req, res) => {
             FCategory,
             Description,
             Body,
+            Pic,
          });
         const forumCreated = await newForum.save()
         if(forumCreated){
