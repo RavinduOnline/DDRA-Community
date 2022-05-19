@@ -115,3 +115,10 @@
     justify-content: center;
     align-items: center;
 }
+
+#signin-alert{
+    display: none;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}

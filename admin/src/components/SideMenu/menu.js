@@ -1,11 +1,32 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import './menu.css'
 import Logo from "./DDRS-Logo_White.png"
 import {Link} from 'react-router-dom'
 
 
+export default function Menu() {
 
-export default function menu() {
+  const islogin = JSON.parse(localStorage.getItem("admin"))
+
+  useEffect(() => {
+    console.log(islogin)
+      if(islogin){
+        ReadData();
+      }
+      else{
+        window.location.replace('/login');
+      }
+  },[islogin]);
+  
+  let userData =""
+  let usrtObj = ""
+
+  const ReadData = () => {
+     userData = localStorage.getItem("admin");
+     usrtObj = JSON.parse(userData);
+  }
+
+
   return (
     <div>
 
@@ -21,9 +42,13 @@ export default function menu() {
           </div> 
 
             <div className='sidemenu-avatar-sub-box'>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRk5HT_MiST8gvuAiCijxgSvKCFtpJPMh7Yvlxc5ZTqfKGuVAAsEls2By-MBbrk0Ncxx4&usqp=CAU" alt='profile-pic' />
-                <p>Janith Dilshan</p> 
-                <a  href="/"><i className="fa-solid fa-right-from-bracket"></i></a>
+                <div className='sidemenu-avatar-sub-box-2'>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRk5HT_MiST8gvuAiCijxgSvKCFtpJPMh7Yvlxc5ZTqfKGuVAAsEls2By-MBbrk0Ncxx4&usqp=CAU" alt='profile-pic' />
+                    <p>{usrtObj.fName +" "+ usrtObj.lName} </p> 
+                </div>
+                <div className='sidemenu-avatar-sub-box-3'>
+                  <a  href="/"><i className="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </div>
             </div>
 
           </header>

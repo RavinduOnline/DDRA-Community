@@ -69,7 +69,7 @@ router.post("/adminlogin", async (req, res) => {
         res.json({token,admin:{_id,fName,lName,email}})
       }
       else{
-        return res.json({ error: "Invalid Email or Password"});
+        return res.status(400).json({ error: "Invalid Email or Password"});
       }
     }catch (err) {
       console.log(err);

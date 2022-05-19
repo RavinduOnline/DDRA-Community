@@ -28,6 +28,16 @@ export default function Wordfilter() {
   const updateHandleShow = () => {setupdateModelshow(true)}
     
 
+  const islogin = JSON.parse(localStorage.getItem("admin"))
+
+  useEffect(() => {
+    console.log(islogin)
+      if(!islogin){
+        window.location.replace('/login');
+      }
+  },[islogin]);
+
+
   useEffect(() => {
     retrieveWords();
   }, []);
@@ -41,7 +51,7 @@ export default function Wordfilter() {
           setSearchText(SelectCategory)
           handleSearchArea();
         }
-        if(SerchWord == "" && SelectCategory == "" ){
+        if(SerchWord === "" && SelectCategory === "" ){
           retrieveWords();
         }
   }, [SerchWord , SelectCategory]);
@@ -306,9 +316,8 @@ export default function Wordfilter() {
                     </tr>
                   </thead>
                   <tbody>
-                 { words.map((getword ,index)=> (
-                    
                 
+                 { words.map((getword ,index)=> (
                       <tr key={index} >
                         <td className='topic-mange-td' scope="row">{index+1}</td>
                         <td className='topic-mange-topic-td'><div  className='nav-link text-capitalize' >{getword.word}</div></td>
@@ -326,7 +335,8 @@ export default function Wordfilter() {
                   ))}
                   </tbody>
                 </table>
-          </div>
+              
+            </div>
    </div>
 
    <Footer/>

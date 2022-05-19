@@ -25,6 +25,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .sidemenu-avatar-sub-box{
@@ -32,16 +33,18 @@
     border-radius: 5px 10px;
     width: 80% ;
     margin: 5px;
-    padding: 3px;
+    padding: 8px 3px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     color: white;
     justify-content: center;
-    align-items: center;
 }
+
+
 
 .sidemenu-avatar-sub-box p{
     font-weight:500;
+    font-size: 12px;
     color: white;
     align-items: center;
     display: flex;
@@ -58,7 +61,30 @@
 }
 
 .sidemenu-avatar-sub-box a{
-    margin: 0px 3px;
+    text-decoration: none;
+    font-size: 10px;
+    color: white;
+    background-color: #044F74;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.sidemenu-avatar-sub-box a:hover{
+    background-color: tomato;
+    color: white;
+}
+
+.sidemenu-avatar-sub-box-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.sidemenu-avatar-sub-box-3{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
 }
 
 .side-menu-item{

@@ -15,8 +15,6 @@ router.get('/admindashboard/countdata', async (req, res)=>{
             const userCount = await User.countDocuments();
             const forumCount = await Forum.countDocuments();
             const replyCount = await Reply.countDocuments();
-
-            console.log(userCount)
             return res.status(200).json({ 
                       userCount, 
                       forumCount,

@@ -1,46 +1,69 @@
-import React,{useState,useContext,} from 'react'
-import {Link,useNavigate} from 'react-router-dom'
-import axios from 'axios'
+import React,{useState} from 'react'
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './sidebar.css'
 import DarkLogo from '../../../SideMenu/DDRS-Logo_DarkBlue.png'
 
 
 export default function Sidebar() {
 
-    const navigate = useNavigate();
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-  
-    const AdminLogin = (e)=>{
+  const [emailAddress , setEmailAddress] = useState("");
+  const [password , setPassword] = useState("");
 
-            e.preventDefault();
+  const AdminLogin = () =>{
+          
+        document.getElementById("signin-alert").style.display = "hide";
 
-       console.log(password);
-       console.log(email);
+        if(!emailAddress || !password){
+          
+          document.getElementById("signin-alert").style.display = "flex";
+          document.getElementById("signin-alert").innerHTML = "Please fill all the field!";
+          return
+        }
+        
+                fetch("/adminlogin",{
+                    method:"post",
+                    headers:{
+                        "Content-Type":"application/json",
+                    },
+                    body:JSON.stringify({
 
+                      email:emailAddress, 
+                      password:password
 
-     axios.post('/adminlogin', {
-        email,
-        password
-      }).then(data=>{
-        console.log(data)
-       if(data.error){
-        console.log(data.err)
-       }
-       else{
-           alert('done');
-           localStorage.setItem("jwt",data.token)
-           localStorage.setItem("admin",JSON.stringify(data.admin))
-           navigate('/')
+                    })
+                }).then(res=>res.json())
+                .then(data => {
 
-       }
-    }).catch(err=>{
-        console.log("jo")
-    })
-    }
+                    if(data.error){ 
+                          document.getElementById("signin-alert").style.display = "flex";
+                          document.getElementById("signin-alert").innerHTML = data.error;  
+                    }
+                    else{
+                      localStorage.setItem("jwt", data.token)
+                      localStorage.setItem("admin", JSON.stringify(data.admin))
+                      toast.success(data.message,{
+                        hideProgressBar: true,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                      });
+                      setTimeout(function(){
+                        window.location.replace('/');
+                      },1000);
+                    }
+                      
+                }).catch((err)=>{
+                  console.log("Error - ", err)
+                })
+      
+   }
   
     return (
       <div>
+                          {/* //For Tost Messages */}
+                          <ToastContainer />
           <div className='Sidebar-body-box'>
   
                       <div className='sidebar-body-box-2'></div>
@@ -66,22 +89,24 @@ export default function Sidebar() {
                                           </div>
   
                                           <div className="side-bar-item">
-  
-                                              <form  className="side-bar-form"> 
+                                          
+                                              <div  className="side-bar-form"> 
   
                                                   <input name='email' type='email' placeholder="Email" required
-                                                  value={email}
-                                                  onChange={(e) =>{ setEmail(e.target.value); }}
+                                                  value={emailAddress}
+                                                  onChange={(e) =>{ setEmailAddress(e.target.value); }}
                                                   />
   
                                                   <input name='password' type='password'  placeholder="Password" required 
                                                   value={password}
                                                   onChange={(e) => { setPassword(e.target.value); }}
                                                   />
+
+                                                  <button onClick={(e)=>AdminLogin()} >Login</button>
   
-                                                  <button onClick={(e)=>AdminLogin(e)} >Login</button>
-  
-                                              </form>
+                                              </div>
+
+                                              <div class="alert " id="signin-alert" role="alert"></div>
   
   
                                           </div>

@@ -1,9 +1,20 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import './topicmanagement.css'
 import SideMenu from '../../SideMenu/menu'
 import Footer from '../../Footer/footer'
 
-export default function topicmanagement() {
+export default function Topicmanagement() {
+
+  const islogin = JSON.parse(localStorage.getItem("admin"))
+
+  useEffect(() => {
+    console.log(islogin)
+      if(!islogin){
+        window.location.replace('/login');
+      }
+  },[islogin]);
+
+
   return (
     <div>
         
