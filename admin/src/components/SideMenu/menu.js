@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import './menu.css'
 import Logo from "./DDRS-Logo_White.png"
-import {Link} from 'react-router-dom'
+import {Link } from 'react-router-dom'
 
 
 export default function Menu() {
@@ -11,20 +11,31 @@ export default function Menu() {
   useEffect(() => {
     console.log(islogin)
       if(islogin){
-        ReadData();
+          
       }
       else{
         window.location.replace('/login');
       }
   },[islogin]);
+
+  useEffect(() => {
+        ReadData();
+  },[]);
   
   let userData =""
-  let usrtObj = ""
+  const [userObj , setUserObj] = useState("")
 
   const ReadData = () => {
      userData = localStorage.getItem("admin");
-     usrtObj = JSON.parse(userData);
+     setUserObj(JSON.parse(userData))
+     console.log(userObj.fName +" "+ userObj.lName)
   }
+
+  const LogOut = () => {
+     localStorage.clear()
+     window.location.replace('/login');
+     
+ }
 
 
   return (
@@ -44,10 +55,10 @@ export default function Menu() {
             <div className='sidemenu-avatar-sub-box'>
                 <div className='sidemenu-avatar-sub-box-2'>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRk5HT_MiST8gvuAiCijxgSvKCFtpJPMh7Yvlxc5ZTqfKGuVAAsEls2By-MBbrk0Ncxx4&usqp=CAU" alt='profile-pic' />
-                    <p>{usrtObj.fName +" "+ usrtObj.lName} </p> 
+                    <p>{userObj.fName +" "+ userObj.lName} </p> 
                 </div>
                 <div className='sidemenu-avatar-sub-box-3'>
-                  <a  href="/"><i className="fa-solid fa-right-from-bracket"></i> Logout</a>
+                  <a onClick={() => LogOut()}><i className="fa-solid fa-right-from-bracket"></i> Logout</a>
                 </div>
             </div>
 
