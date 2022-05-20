@@ -1,7 +1,44 @@
-.forumcard-mainbox {
+/* start search bar */
+#home-searchNav{
+    background-color: #E3E3E3;
+    color: #707070;
+    font-weight: 700;
+    border-color: #707070;
+    width: 95%;
+    height: 40px;
+    align-items: center;
+    margin: 20px 20px 5px 20px;
+    border-radius: 5px;
+  }
+  /* end search bar */
+  .home-btn-container{
+    margin:20px 10px 50px 40px;
+    position: relative;   
+  }
+
+  .home-topic-txt h6{  
+    font-size: 16px;
+    top:0px;
+    position: absolute;
+    font-weight: 750;
+  }
+  
+  .home-topic-txt-topic{
+    float: left;
+    text-align: left;    
+  }
+
+  .home-topic-txt-reply{
+    float: right;
+    text-align: right;
+    right: 4rem;
+  }
+
+  .forumcard-mainbox {
     border-style: solid;
     border:4px;
-    margin: auto;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-top: 12px;  
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.2);
     border-color:black;

@@ -1,12 +1,24 @@
-import React from 'react'
 import Header from '../../../Header/header'
 import Footer from '../../../Footer/footer'
 import './forumview.css'
 import Img from '../ForumImage/forum01.png'
 import ReplyHome  from '../../Reply/ReplyHome/ReplyHome'
+import React,{useState, useEffect} from 'react'
+import {useParams} from 'react-router-dom'
+  
 
+export default function Forumview(props) {
 
-export default function forumview() {
+    const {id} = useParams()
+
+    useEffect(() => {
+        GetforumID();
+  },[]);
+
+    const GetforumID = () => {
+       
+         console.log(id)
+    }
   return (
     <div>
         <Header/>
