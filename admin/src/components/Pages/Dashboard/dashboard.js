@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react'
-import axios from 'axios'; 
+import {Navigate} from "react-router-dom"
 import './dashboard.css'
 import Footer from '../../Footer/footer'
 import SideMenu from '../../SideMenu/menu'
@@ -7,23 +7,23 @@ import TopicTable from './TopicTable/topictable'
 
 export default function Dashboard (){
 
-          const [countdata , setData] = useState([]);
+     
 
-         
+        const [countdata , setData] = useState([]);
        
-        const getCoutData = () =>{
-          axios.get('/admindashboard/countdata')
+        const getCountingData = () =>{
+          fetch("/admindashboard/countdata").then(res=>res.json())
           .then(response=>{
-             console.log(response.data);
-             setData(response.data);
+             setData(response);
+             console.log(response)
           })
           .catch((err)=>{
-             console.log("Err Axios - ",err)
+             console.log("Err - ",err)
           })
         }
 
-          useEffect(() => {
-            getCoutData();
+          useEffect(() => {  
+            getCountingData();
           }, []);
 
           

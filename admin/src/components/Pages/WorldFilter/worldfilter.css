@@ -30,3 +30,11 @@
     margin: 5px;
     min-width: 10vh;
 }
+
+.update-btn-popup{
+    background-color: #044F74;
+}
+
+.topic-manage-form-box{
+    margin-bottom: 22px;
+}

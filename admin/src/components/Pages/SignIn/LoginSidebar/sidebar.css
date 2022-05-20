@@ -115,3 +115,17 @@
     justify-content: center;
     align-items: center;
 }
+
+#signin-alert{
+    display: none;
+    background-color: #ffffff; /* Red */
+    font-weight: 700;
+    color: tomato;
+    border: solid red;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+.forget-password{
+    font-weight: 700;
+}
