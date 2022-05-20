@@ -24,10 +24,11 @@
 }
 
 .sigin-form-box{
+  background-color: white;
   position: relative;
   padding: 15px;
   width: 25%;
-  height: 40vh;
+  height: max-content;
 }
 
 .sigin-form-box h4{
@@ -57,5 +58,9 @@
   color: white;
   font-weight: 500;
   border-radius: 5px;
+}
+
+#signin-alert{
+  display: none;
 }
 

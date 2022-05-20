@@ -1,11 +1,34 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import Header from '../../../Header/header'
 import './profile.css'
 import ForumCard from '../../Forum/Home/ForumCard/forumcard'
 import Ppic from'./Profile.jpg'
 import Footer from '../../../Footer/footer'
 
-export default function profile() {
+
+export default function Profile() {
+
+  useEffect(() => {
+    retrieveUser();
+  }, []);
+    
+  const [user , setUser] = useState([]);
+
+    const retrieveUser = () =>{
+      const userDetails = JSON.parse(localStorage.getItem("user"))
+      console.log(userDetails._id)
+      fetch("/user/usersetting/"+userDetails._id).then(res=>res.json())
+          .then(response=>{
+            console.log(response);
+            setUser(response);
+            console.log(user.lName)
+        })
+        .catch((err)=>{
+            console.log("Err Axios - ",err)
+        })
+  
+      }
+
   return (
     <div>
       <Header/>
@@ -19,9 +42,9 @@ export default function profile() {
                     <img src={Ppic} width="150" height="150"/>
                   </td>
                   <td >
-                    <h4>Janith Dilshan</h4>
-                    <p>Sri Lanka</p>
-                    <p>janith@gmail.com</p>
+                    <h4>{user.fName} {user.lName}</h4>
+                    <p>{user.country}</p>
+                    <p>{user.email}</p>
                   </td>
                   <td>
                     

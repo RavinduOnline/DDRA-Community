@@ -1,34 +1,70 @@
 import React,{useState, useEffect} from 'react'
-import axios from 'axios';
 import Header from '../../../Header/header'
 import './usersetting.css'
 import Ppic from'./Profile.jpg'
 import Footer from '../../../Footer/footer'
+import { Button , Modal } from 'react-bootstrap';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Usersetting() {
 
-      const [user , setUser] = useState([]);
+  const [deleteModelshow, setDeleteModelshow] = useState(false);
+  const deleteHandleClose = () => {setDeleteModelshow(false)}
+  const deleteHandleShow = () => {setDeleteModelshow(true)}
 
-      const retrieveUserSetting = () =>{
-        axios.get("/user/usersetting/627796f69c7c7904f0c9ccbc")
-            .then(response=>{
-              console.log(response.data);
-              setUser(response.data);
-          })
-          .catch((err)=>{
-              console.log("Err Axios - ",err)
-          })
-        }
+  useEffect(() => {
+    retrieveUser();
+  }, []);
+    
+  const [user , setUser] = useState([]);
 
-        useEffect(() => {
-          retrieveUserSetting();
-        }, []);
+
+    const retrieveUser = () =>{
+      const userDetails = JSON.parse(localStorage.getItem("user"))
+      console.log(userDetails._id)
+      fetch("/user/usersetting/"+userDetails._id).then(res=>res.json())
+          .then(response=>{
+            console.log(response);
+            setUser(response);
+            console.log(user.lName)
+        })
+        .catch((err)=>{
+            console.log("Err Axios - ",err)
+        })
+  
+      }
+
+      const ProfileDelete = (id) =>{
+        fetch('/user/disableprofile/' + id, {
+          method: 'DELETE',
+        }).then(res=>res.json())
+        .then((data) =>{
+  
+  
+  
+          if(data.error){ 
+            toast.error(data.error,{
+              theme: "colored",
+            });
+          }
+          else{
+            localStorage.clear()
+            window.location.replace('/signup');
+          }
+  
+  
+        })
+        .catch((err)=>{
+          console.log(err)
+         })
+      }
 
   return (
     <div>
       <Header/>
+      <ToastContainer/>
       
-      { user.map(getUser => (
       <div className='usersetting-main-box'>
 
           
@@ -38,9 +74,9 @@ export default function Usersetting() {
                       <img src={Ppic} />
                     </diV>
                     <diV className='usersetting-cen-2'>
-                      <h4>Janith Dilshan</h4>
-                      <p>Sri Lanka</p>
-                      <p>janith@gmail.com</p>
+                      <h4>{user.fName} {user.lName}</h4>
+                      <p>{user.country}</p>
+                      <p>{user.email}</p>
                       <a href="/usersetting">
                         <button type="submit" >Change Image</button>
                       </a>
@@ -54,33 +90,30 @@ export default function Usersetting() {
 
                     <tr>
                       <td>First Name</td>
-                      <td>Janith</td>
+                      <td>{user.fName}</td>
                     </tr>
                     <tr>
                       <td>Last Name</td>
-                      <td>Dilshan</td>
+                      <td>{user.lName}</td>
                     </tr>
                     <tr>
                       <td>Email</td>
-                      <td>janith@gmail.com</td>
+                      <td>{user.email}</td>
                     </tr>
                     <tr>
                       <td>Country</td>
-                      <td>Sri Lanka</td>
-                    </tr>
-                    <tr>
-                      <td>Gender</td>
-                      <td>Mail</td>
+                      <td>{user.country}</td>
                     </tr><br/>
 
                     </table>
 
                     <div className='usersetting-button-1'>
-                    <button type="submit">Change Password</button><br/>
-                    <button type="submit">Change details</button><br/>
+                    <a href="/resetpassword"><button type="submit">Change Password</button></a><br/>
+                    <a href="/updateprofile"><button type="submit">Change details</button></a><br/>
                     </div>
                     <div className='usersetting-button-2'>
-                    <button type="submit">Disable Profile</button><br/>
+                    <button type="submit"
+                      onClick={() => setDeleteModelshow(true)}>Disable Profile</button><br/>
                     <button type="submit">Download User details Report</button>
                     </div>
                   
@@ -89,7 +122,36 @@ export default function Usersetting() {
            
       </div>
 
-        ))}
+        {/* ********* Delete Popup Start***************** */}
+          <div>
+        
+            <Modal show={deleteModelshow} onHide={deleteHandleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Delete Confirm</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <div>
+                  <p>Are you sure you want to delete your account?<br/>
+                    You will no longer be able to use these services after confirming 
+                    the removal of your account. This process is also irreversible.</p>
+                </div>
+                <div class="text-danger mb-1" id="WordUpdate-alert " role="alert"></div>
+
+              </Modal.Body>
+
+              <Modal.Footer>
+                  <Button variant="secondary" onClick={deleteHandleClose}>
+                    Close
+                  </Button>
+                  
+                  <Button variant="primary" onClick={() => ProfileDelete(user._id)}>
+                    Confirm
+                  </Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+        {/* ********* Delete Popup End *************** */}
 
         <Footer/>
         

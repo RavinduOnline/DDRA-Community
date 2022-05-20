@@ -32,3 +32,7 @@
     margin: 5px;
     background-color: #26eb0c;
 }
+
+#userUpdate-alert{
+    display: none;
+}
