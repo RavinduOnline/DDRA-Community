@@ -17,11 +17,6 @@ const userSchema = new mongoose.Schema(
         trim: true,
         required: true,
       },
-      gender: {
-        type: String,
-        trim: true,
-        required: true,
-      },
       interested: {
         type: String,
         trim: true,

@@ -1,24 +1,74 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from 'react'
 import './signupforum.css'
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Signupforum() {
 
     const [fName,setFName] = useState("")
     const [lName,setLName] = useState("")
     const [email,setEmail] = useState("")
-    const [gender,setGender] = useState("")
     const [interested,setInterested] = useState("")
     const [country,setCountry] = useState("")
     const [password,setPassword] = useState("")
     const [rePassword,setRePassword] = useState("")
 
   const SignupGetData = () =>{
-    console.log(gender)
+
+    document.getElementById("signup-alert").style.display = "hide";
+
+    if(!fName || !lName || !email || !interested || !country || !password || !rePassword){
+      document.getElementById("signup-alert").style.display = "flex";
+              document.getElementById("signup-alert").innerHTML = "Please fill all the field!";
+              return
+    }
+    fetch("/user/signup",{
+      method:"post",
+      headers:{
+          "Content-Type":"application/json",
+      },
+      body:JSON.stringify({
+
+        fName, 
+        lName, 
+        email, 
+        interested, 
+        country,
+        password,
+        rePassword
+
+      })
+  }).then(res=>res.json())
+  .then(data => {
+
+      if(data.error){ 
+            document.getElementById("signup-alert").style.display = "flex";
+            document.getElementById("signup-alert").innerHTML = data.error;  
+      }
+      else{
+        toast.success(data.message,{
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(function(){
+          window.location.replace('/signin');
+        },1000);
+      }
+        
+
+    console.log("data create -", data)
+  }).catch((err)=>{
+    console.log("Error - ", err)
+  })
   }
 
   return (
     <div> 
+      <ToastContainer/>
 
         <div>
           <div className='signup-details'>
@@ -62,53 +112,31 @@ export default function Signupforum() {
                     </td><br/><br/>
                   </tr>
 
-                  <tr>
-                    <td className='signup-td'><label for="gender"><b>Gender<br/></b></label></td>
-                    
-                    <td className='signup-input'>
-                      <input 
-                        type="radio" 
-                        id="male" 
-                        name="gender" 
-                        value={gender}
-                          onChange={(e) => setGender(e.target.value)}/>
-
-                      <label for="male">Male</label>
-
-                      <input 
-                        type="radio" 
-                        id="female" 
-                        name="gender" 
-                        value={gender}
-                          onChange={(e) => setGender(e.target.value)}/>
-
-                      <label for="female">Female</label>
-
-                      <input 
-                        type="radio" 
-                        id="other" 
-                        name="gender" 
-                        value={gender}
-                          onChange={(e) => setGender(e.target.value)}/>
-
-                      <label for="other">Other</label>
-                    </td><br></br><br/>
-                  </tr>
-                    
 
                   <tr>
                     <td className='signup-td'><label for="interested"><b>Interested<br/></b></label></td>
-                    <td className='signup-input'><input type="text" placeholder="Enter interested" name="interested" required/></td><br/><br/>
+                    <td className='signup-input'>
+                      <input type="text" 
+                        placeholder="Enter interested" 
+                        name="interested"
+                        value={interested}
+                          onChange={(e) => setInterested(e.target.value)}
+                        required/>
+                    </td><br/><br/>
                   </tr>
 
                   <tr>
                   <td className='signup-td'><lable for="country"><b>Country</b></lable></td>
                     <td>
-                      <select name="country" id="country">
-                        <option value="united kingdom">Sri Lanka</option>
-                        <option value="united states">United States</option>
-                        <option value="australia">Australia</option>
-                        <option value="japan">Japan</option>
+                      <select name="country" 
+                        id="country"
+                        value={country}
+                          onChange={(e) => setCountry(e.target.value)}>
+                        <option value="" selected disabled hidden>Select Country</option>
+                        <option key="sl" value="Sri Lanka">Sri Lanka</option>
+                        <option key="us" value="United States">United States</option>
+                        <option key="aus" value="Australia">Australia</option>
+                        <option key="japan" value="Japan">Japan</option>
                       </select>
                     </td><br/><br/>
                   </tr>
@@ -116,21 +144,38 @@ export default function Signupforum() {
 
                   <tr>
                     <td className='signup-td'><label for="psw"><b>Password</b></label></td>
-                    <td className='signup-input'><input type="password" placeholder="Enter Password" name="psw" required/></td><br/><br/>
+                    <td className='signup-input'>
+                      <input type="password" 
+                        placeholder="Enter Password" 
+                        name="psw" 
+                        value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        required/>
+                    </td><br/><br/>
                   </tr>
 
                   <tr>
                     <td className='signup-td'><label for="psw-repeat"><b>Re-enter Password</b></label></td>
-                    <td className='signup-input'><input type="password" placeholder="Confirm Password" name="psw-repeat" required/></td><br/><br/>
+                    <td className='signup-input'>
+                      <input type="password" 
+                        placeholder="Confirm Password" 
+                        name="psw-repeat" 
+                        value={rePassword}
+                          onChange={(e) => setRePassword(e.target.value)}
+                        required/>
+                    </td><br/><br/>
                   </tr>
                 </table>
+                <div id="signup-alert" class="alert alert-danger" role="alert"/><br/>
 
                 <label>
                 <input type="checkbox" checked="checked" name="remember" /> Agree to the teams and condition
-                </label><br/>
+                </label>
 
                 <div class="signup-button">
-                <button type="submit" class="signup-button">Sign Up</button>
+                <button type="submit" 
+                  class="signup-button"
+                  onClick={() => SignupGetData() }>Sign Up</button>
                 </div>
 
           </div>

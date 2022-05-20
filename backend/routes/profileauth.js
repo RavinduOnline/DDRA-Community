@@ -9,9 +9,9 @@ const User = require("../models/profile")
 // Register user (Create)
 
 router.post("/signup", async (req, res) => {
-    const {fName, lName, email, gender, interested, country, password, rePassword } = req.body;
+    const {fName, lName, email, interested, country, password, rePassword } = req.body;
   try {
-        if(!fName || !lName || !email || !gender || !interested || !country || !password || !rePassword){
+        if(!fName || !lName || !email || !interested || !country || !password || !rePassword){
             return res.status(422).json({ error: "Please fill all the field" });
         }
         let user = await User.findOne({ email:email });
@@ -24,7 +24,6 @@ router.post("/signup", async (req, res) => {
             fName,
             lName,
             email,
-            gender,
             interested,
             country,
             password:hashedPassword,
@@ -46,9 +45,9 @@ router.post("/signup", async (req, res) => {
 
 
 
-// login user (Retrieve)
+// login user (Post)
 
-router.get('/signin', async (req,res) => {
+router.post('/signin', async (req,res) => {
     const {email,password} = req.body;
     if(!email || !password){
         res.status(422).json({error:"Please add email or password"})
@@ -61,7 +60,10 @@ router.get('/signin', async (req,res) => {
         bcrypt.compare(password,savedUser.password)
         .then(doMatch=>{
             if(doMatch){
-                res.json({message:"Successfully signed in"})
+                 //Generate User Token
+                 const token = jwt.sign({_id:savedUser._id},process.env.JWT_SECRET, { expiresIn: '1d'}); 
+                 const {_id,fName,lName,email} = savedUser
+                 res.json({token , user:{_id,fName,lName,email } });  
             }
             else{
                 return res.status(422).json({error:"Invalid email or password"})
@@ -88,10 +90,9 @@ router.get('/usersetting/:id',(req, res) => {
             return res.status(400).json({success:false,err});
         }
 
-        return res.status(200).json({
-        success:true,
+        return res.status(200).json(
         user
-        });
+        );
     });
 
 });
@@ -173,6 +174,9 @@ router.delete('/disableprofile/:id',(req, res)=>{
         });
     });
 });
+
+
+
 
 
 
