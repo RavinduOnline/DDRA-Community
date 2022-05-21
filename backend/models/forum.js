@@ -22,6 +22,9 @@ const forumSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
+    Pic: {
+      type: String,
+    },
     Created_at: {
         type:Date,
         default: Date.now()

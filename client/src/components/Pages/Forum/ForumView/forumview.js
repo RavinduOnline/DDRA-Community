@@ -1,29 +1,48 @@
-import React from 'react'
 import Header from '../../../Header/header'
 import Footer from '../../../Footer/footer'
 import './forumview.css'
 import Img from '../ForumImage/forum01.png'
 import ReplyHome  from '../../Reply/ReplyHome/ReplyHome'
+import React,{useState, useEffect} from 'react'
+import {useParams} from 'react-router-dom'
+  
 
+export default function Forumview() {
 
-export default function forumview() {
+    const [forum , setForum] = useState([]);
+
+    const {id} = useParams()
+
+    useEffect(() => {
+        Getforum(id);
+  },[]);
+
+  const Getforum = (id) =>{
+    fetch("/forumget/one/" + id).then(res=>res.json())
+        .then(response=>{
+          console.log(response);
+          setForum(response);
+      })
+      .catch((err)=>{
+          console.log("Err - ",err)
+      })
+}
   return (
     <div>
         <Header/>
 
             <div className='forumview-view'>
                 <div className='forumview-topic'>
-                    <h1 >Proxy does not work with the React build version</h1>
-                    <p className='forumview-topic-txt'>Dec 13,2022 at 2:04</p>
+                    <h1 >{forum.Title}</h1>
+                    <p className='forumview-topic-txt'>{forum.Created_at}</p>
                 </div>
 
                 <hr/>
 
                 <div className='forumview-topic-desc'>
-                    <p>I'm bit annoyed that the ENTSO-E only provides XML responses and no JSON formats for their API. Does anyone have experienced with converting text/xml responses to data frames in R? I usually use @data_life Sorry there was a typo in the lapps () definition, which I corrected. One shouldn't name variables with the same name as a function. "file" in this case. Sometimes, I should take my own advise :)-
-                    </p>
+                    <div>{forum.Body}</div>
 
-                    <img src={Img} />
+                    <img src={forum.Pic} />
 
                 </div>
             </div>

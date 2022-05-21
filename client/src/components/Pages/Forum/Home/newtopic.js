@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Header from '../../../Header/header'
 import './newtopic.css'
 import Footer from '../../../Footer/footer'
@@ -10,6 +10,11 @@ import {useSelector} from 'react-redux'
 import {selectUser} from '../../../../feature/userSlice'
 import Editor from "react-quill/lib/toolbar";
 
+import { ref, uploadBytes, getDownloadURL, listAll,list } from "firebase/storage";
+import { storage } from "../../../Firebase Storage/firebase";
+
+import { v4 } from "uuid";
+import { useState, useEffect , useRef} from "react";
 
 export default function Home() {
 
@@ -18,7 +23,48 @@ const[FCategory, setFCategory]= useState("")
 const[MiniDescription, setMiniDescription] = useState("")
 const [userInfo, setuserInfo] = useState({description:''});
 
+const [imageUpload, setImageUpload] = useState("");
+    const [url,setUrl] = useState("")
+      useEffect(() => {
 
+        if(url){
+          console.log(url)
+          TopicCreate();
+        }
+
+      }, [url]);
+
+const uploadFile =  () => {
+  if (imageUpload == null){
+    return;
+  }     
+  else{
+        const imageRef = ref(storage, `posts/${imageUpload.name + v4()}`);
+         uploadBytes(imageRef, imageUpload).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((imageurl) => {
+              console.log(imageurl) //test
+              setUrl(imageurl)
+              console.log("URL - " + url)
+              
+          });
+        });
+  }   
+
+}
+
+
+const TopicCreateData =  () =>{
+
+  if(imageUpload){
+        uploadFile()
+        console.log("URL - " + url)
+  }
+  else{
+    TopicCreate();
+  }
+
+
+}
 
 
     const ondescription = (value) => {
@@ -27,9 +73,12 @@ const [userInfo, setuserInfo] = useState({description:''});
         description:value
       });
     } 
-    const TopicCreate = () =>{
 
-      if(!Title || !FCategory || !MiniDescription || !userInfo ){
+
+    const TopicCreate = () =>{
+      console.log("URL - " + url)
+      console.log("Topic Created " )
+      if(!Title || !FCategory || !MiniDescription ||!userInfo ){
               
         alert("Fill All")
         return
@@ -49,7 +98,8 @@ const [userInfo, setuserInfo] = useState({description:''});
           Title:Title, 
           FCategory:FCategory, 
           Description:MiniDescription,
-          Body:userInfo.description
+          Body:userInfo.description,
+          Pic:url,
 
         })
     }).then(res=>res.json())
@@ -59,7 +109,7 @@ const [userInfo, setuserInfo] = useState({description:''});
               alert("Error" + data.error)
         }
         else{
-          alert("Error" + data.message)
+          alert(data.message)
           setTimeout(function(){
             window.location.replace('/');
           },1000);
@@ -125,6 +175,18 @@ const [userInfo, setuserInfo] = useState({description:''});
 
                   <div className='newtopic-question-option'> 
                     <div className='newtopic-title'>
+                    <div class="mb-3">
+                        <label for="formFile" className="form-label">Upload Image</label>
+                        <input className="form-control" type="file" id="formFile"
+                        onChange={(event) => {
+                                  setImageUpload(event.target.files[0]);
+                                }}/>
+                    </div>
+                    </div>
+                  </div>
+
+                  <div className='newtopic-question-option'> 
+                    <div className='newtopic-title'>
                       <small>Include all information someone would need to answer your question</small>
                           <div className='react-quill-box'>
                             <ReactQuill 
@@ -147,7 +209,7 @@ const [userInfo, setuserInfo] = useState({description:''});
 
                 <button
                     type='submit'
-                    onClick={() => TopicCreate() }
+                    onClick={() => TopicCreateData() }
                     className='newtopic-button-create'>Create
                 </button>
 
@@ -158,7 +220,14 @@ const [userInfo, setuserInfo] = useState({description:''});
 
         </div>
 
-        <Footer/>
+        <div>
+
+            
+
+        </div>
+        <footer>
+            <p  className='footer-copyright'>COPYRIGHTS <a href="#">TEAM X</a></p>
+        </footer>
     </div>
   )
 }
