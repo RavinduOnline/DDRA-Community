@@ -48,27 +48,19 @@ router.get("/forumget", async (req, res) => {
   
 
   router.get("/forumget/one/:id", async (req, res) => {
-    try {
-      let forumId = req.params.id;
-      console.log(forumId);
-  
-      Forum.findById(forumId,(err,post)=>{
-        if(err){
-          return res.status(400).json({
-              success:false, err
-          });
+        
+      try{
+        Forum.findById(req.params.id).then((Forum)=>{
+              res.status(200).json(Forum)
+          }).catch((err)=>{
+              console.log(err);
+              return res.status(400).json({ error: "Something has error" });
+          })
+      }catch{
+          return res.status(400).json({ error: "Something has error" });
       }
-      return res.status(200).json({
-          success:true, post
-      });
-    }) ;
 
-    } catch (err) {
-        console.log(err)
-       res.status(400).send({
-        message: "Forum not found",
-      });
-    }
+
   });
 
 module.exports = router;
