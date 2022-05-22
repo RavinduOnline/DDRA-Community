@@ -30,6 +30,7 @@
 .updatepro-button-2 button {
     width: 300px;
     margin: 5px;
+    border-radius: 10px;
     background-color: #26eb0c;
 }
 
