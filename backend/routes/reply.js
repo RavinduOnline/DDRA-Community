@@ -44,7 +44,7 @@ router.get('/reply/:id', async (req,res)=>{
     
     try{
         Reply.find({forum_id:req.params.id})
-        .populate("user","_id fName")
+        .populate("user","_id fName lName")
         .then((ReplyData)=>{
             res.status(200).json(ReplyData)
         }).catch((err)=>{
