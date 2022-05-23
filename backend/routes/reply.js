@@ -16,13 +16,14 @@ router.get('/reply' , (req, res)=>{
 router.post('/replycreate',async (req,res) => {
 
 
-    const { forum_id, reply, user } = req.body;
+    const { forum_id, reply, name, user } = req.body;
 
     try{
 
     newReply = new Reply({
         forum_id,
         reply,
+        name,
         user,
     })
 
@@ -38,45 +39,23 @@ router.post('/replycreate',async (req,res) => {
 })
 
 
-//update wordfilter
-// router.put('/adminmanage/wordfilter/update/:id', async (req,res)=>{
+//Get Specific Word
+router.get('/reply/:id', async (req,res)=>{
+    
+    try{
+        Reply.find({forum_id:req.params.id})
+        .populate("user","_id fName lName")
+        .then((ReplyData)=>{
+            res.status(200).json(ReplyData)
+        }).catch((err)=>{
+            console.log(err);
+            return res.status(400).json({ error: "Something has error" });
+        })
+    }catch{
+        return res.status(400).json({ error: "Something has error" });
+    }
 
-//     const {word, wcategory} = req.body;
-//   try {
-//         if(!word || !wcategory){
-//             return res.status(422).json({ error: "Please fill all the field" });
-//         }
-
-//         const lowerCaseWord = word.toLowerCase();
-//         let findWord = await WordFilter.findOne({ word:lowerCaseWord });
-//         if (findWord) {
-//           return res.status(400).json({ error: "This Word already exists" });
-//         }
-
-//         else{
-//             WordFilter.findByIdAndUpdate(
-//                 req.params.id,{
-//                     word:lowerCaseWord,
-//                     wcategory,
-//                 },
-//                 (err,post)=>{
-//                     if(err){
-//                         return res.status(400).json({
-//                             error:err 
-//                         });
-//                     }
-
-//                     return res.status(200).json({
-//                         success:"Word Filter Updated Successfully"
-//                     });
-//                 }
-//             );
-//         }
-
-//   }catch{
-
-//   }
-// });
+});
 
 
 module.exports = router;

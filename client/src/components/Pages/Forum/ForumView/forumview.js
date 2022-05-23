@@ -5,17 +5,31 @@ import Img from '../ForumImage/forum01.png'
 import ReplyHome  from '../../Reply/ReplyHome/ReplyHome'
 import React,{useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
+import Replycard from '../../Reply/replycard/replycard'
   
 
 export default function Forumview() {
+
+    let userData =""
+    const [userObj , setUserObj] = useState("")
 
     const [forum , setForum] = useState([]);
 
     const {id} = useParams()
 
+
+
     useEffect(() => {
         Getforum(id);
+        getUser();
   },[]);
+
+
+const getUser= () =>{
+    userData = localStorage.getItem("user");
+     setUserObj(JSON.parse(userData))
+     console.log(userObj.fName +" "+ userObj.lName)
+}
 
   const Getforum = (id) =>{
     fetch("/forumget/one/" + id).then(res=>res.json())
@@ -61,7 +75,8 @@ export default function Forumview() {
                    
                 </div>
                 
-                <ReplyHome/> 
+                <ReplyHome  getForumid={forum._id} GetUser={userObj}/ > 
+                <Replycard  getForumid={forum._id} />
             </div>
 
         <Footer/>
