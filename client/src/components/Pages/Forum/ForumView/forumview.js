@@ -42,7 +42,7 @@ export default function Forumview() {
                 <div className='forumview-topic-desc'>
                     <div>{forum.Body}</div>
 
-                    <img src={forum.Pic} />
+                    <div className='forum-img'> <img src={forum.Pic} /></div>
 
                 </div>
             </div>

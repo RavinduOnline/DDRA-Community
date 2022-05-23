@@ -88,7 +88,7 @@
 
   .home-topic-txt h6{  
     font-size: 16px;
-    top: 70px;
+    margin-top: 60px;
     position: absolute;
     font-weight: 750;
   }
@@ -104,5 +104,6 @@
     right: 4rem;
   }
 
-  
-
+   hr{
+    margin-top: 35px;
+  }

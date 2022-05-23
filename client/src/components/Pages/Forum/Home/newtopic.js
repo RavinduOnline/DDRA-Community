@@ -79,7 +79,7 @@ const TopicCreateData =  () =>{
       console.log("URL - " + url)
       console.log("Topic Created " )
       if(!Title || !FCategory || !MiniDescription ||!userInfo ){
-              
+
         alert("Fill All")
         return
       }
@@ -163,7 +163,6 @@ const TopicCreateData =  () =>{
                   <div className='newtopic-question-option'> 
                     <div className='newtopic-title'>
                       <input 
-
                           type="text" 
                           placeholder='Mini Description' 
                           maxLength="100"
@@ -197,6 +196,17 @@ const TopicCreateData =  () =>{
                                 className="newtopic-react-quill" 
                                 placeholder={"Include all information someone would need to answer your question..."}
                                 />
+
+
+
+                {/* <ReactQuill
+                  value={this.state.content}
+                  readOnly={true}
+                  theme={"bubble"}
+                /> */}
+
+
+
                           </div>
                       </div>
                       

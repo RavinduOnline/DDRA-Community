@@ -44,7 +44,7 @@
     text-align: center;
     display: flex;
     border-radius: 5px;
-    min-height: 4vh;
+    min-height: 5vh;
     align-items: center;
     max-width: max-content;
   }
