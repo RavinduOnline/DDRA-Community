@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React , { useState, useEffect } from "react";
 import Header from '../../../Header/header'
 import Footer from '../../../Footer/footer'
 import './ReplyHome.css'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import Replycard from '../replycard/replycard'
 
 
-export default function ReplyHome() {
+
+export default function ReplyHome({getForumid,GetUser}) {
 
   const [replyInfo, setreplyInfo] = useState({reply:''});
+
 
 
   const onreply = (value) => {
@@ -19,6 +20,9 @@ export default function ReplyHome() {
     });
   } 
   const ReplyCreate = () =>{
+
+
+    
 
     if(!replyInfo ){
             
@@ -30,6 +34,13 @@ export default function ReplyHome() {
       return;
     }
 
+
+
+
+
+    const UserName = GetUser.fName +" "+ GetUser.lName;
+  
+
     fetch("/replycreate",{
       method:"post",
       headers:{
@@ -37,9 +48,10 @@ export default function ReplyHome() {
       },
       body:JSON.stringify({
 
-        forum_id:'627661cf493cdb58d452400a',
+        forum_id:getForumid,
         reply:replyInfo.reply,
-        user:'627796f69c7c7904f0c9ccbc',
+        name:UserName,
+        user:GetUser._id,
       })
   }).then(res=>res.json())
   .then(data => {
@@ -60,7 +72,7 @@ export default function ReplyHome() {
     console.log("Error - ", err)
   })
 
-  }
+}
 
 
 
@@ -68,8 +80,6 @@ export default function ReplyHome() {
   return (
     <div>
         
-        <Replycard/>
-
         
           <div className='reply-quil-boc'>
               <ReactQuill className="ReplyHome-react-quill" 
@@ -91,4 +101,8 @@ export default function ReplyHome() {
 
     </div>
   )
-}
+
+
+  
+  }
+

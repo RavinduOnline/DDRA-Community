@@ -1,7 +1,33 @@
-import React from 'react'
+import React , { useState, useEffect } from "react";
 import './replycard.css'
 
-export default function replycard() {
+export default function Replycard(getForumid) {
+
+    const [forumaid , setforumID] = useState("")
+    const [getReply , setGetReply] = useState("")
+
+    useEffect(() => {
+        getreply();
+      }, []);
+
+
+    const getreply = () =>{
+
+        setforumID(getForumid)
+        console.log(forumaid)
+
+        fetch("/reply/" + forumaid).then(res=>res.json())
+            .then(response=>{
+              console.log(response);
+              setGetReply(response.word);
+              setGetReply(response.wcategory);
+              setGetReply(response);
+          })
+          .catch((err)=>{
+              console.log("Err - ",err)
+          })
+    }
+
   return (
     <div>
 
