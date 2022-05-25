@@ -56,7 +56,9 @@ const getUser= () =>{
                 <div className='forumview-topic-desc'>
                     <div dangerouslySetInnerHTML={{__html: forum.Body}}></div>
 
-                    <div className='forum-img'> <img src={forum.Pic} /></div>
+                    {forum.Pic && 
+                         <div className='forum-img'> <img src={forum.Pic} /></div>
+                    }
 
                 </div>
             </div>

@@ -36,7 +36,8 @@ router.post("/forumcreate", async (req, res) => {
 //retrieve
 router.get("/forumget", async (req, res) => {
   try{
-    Forum.find().then((ForumList)=>{
+    Forum.find().sort('-createdAt')
+    .then((ForumList)=>{
         res.status(200).json(ForumList)
     }).catch((err)=>{
         console.log(err);

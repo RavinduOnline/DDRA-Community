@@ -1,4 +1,6 @@
-import React , {useEffect} from 'react'
+import React , { useState, useEffect } from "react";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './topicmanagement.css'
 import SideMenu from '../../SideMenu/menu'
 import Footer from '../../Footer/footer'
@@ -6,6 +8,8 @@ import Footer from '../../Footer/footer'
 export default function Topicmanagement() {
 
   const islogin = JSON.parse(localStorage.getItem("admin"))
+  const [topic , setTopic] = useState([]);
+
 
   useEffect(() => {
     console.log(islogin)
@@ -14,10 +18,58 @@ export default function Topicmanagement() {
       }
   },[islogin]);
 
+  useEffect(() => {
+    retrieveTopic();
+  }, []);
+
+
+  const retrieveTopic = () =>{
+    fetch("/adminmanage/forum/get").then(res=>res.json())
+        .then(response=>{
+          console.log(response);
+          setTopic(response);
+      })
+      .catch((err)=>{
+          console.log("Err - ",err)
+      })
+
+    }
+
+    const onDelete = (id) =>{
+      fetch('/adminmanage/topic/delete/' + id, {
+        method: 'DELETE',
+      }).then(res=>res.json())
+      .then((data) =>{
+
+        if(data.error){ 
+          toast.error(data.error,{
+            theme: "colored",
+          });
+        }
+        else{
+          toast.error(data.message,{
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            icon: false,
+          });
+          retrieveTopic();
+        }
+
+
+      })
+      .catch((err)=>{
+        console.log(err)
+       })
+    }
+
 
   return (
     <div>
-        
+        <ToastContainer/>
         <SideMenu/>
 
         <div className='main-body-container'> {/* CSS Coming from Dashboard CSS File */}
@@ -61,17 +113,19 @@ export default function Topicmanagement() {
                       </thead>
                       <tbody>
 
+        { topic.map((getTopic ,index)=> (
                           <tr>
-                            <td className='topic-mange-td' scope="row">1</td>
-                            <td className='topic-mange-topic-td'><a className='nav-link' href='#er'>Test 1</a></td>
+                            <td className='topic-mange-td' scope="row">{index+1}</td>
+                            <td className='topic-mange-topic-td'><a className='nav-link' href='#er'>{getTopic.Title}</a></td>
                             <td className='topic-mange-td'>50</td>
-                            <td className='topic-mange-td'>Java Script</td>
+                            <td className='topic-mange-td'>{getTopic.FCategory}</td>
                             <td className='topic-mange-td'>
-                              <a className=" btn btn-danger" id="deletetBtn" href='/#ed'>
+                              <a className=" btn btn-danger" id="deletetBtn" onClick={() =>onDelete(getTopic._id)}>
                                   <i className="fas fa-trash-alt"></i>&nbsp;Delete   
                               </a>
                             </td>
                           </tr>
+         ))}
                       </tbody>
                     </table>
               </div>

@@ -171,5 +171,41 @@ router.get('/adminmanage/word/:id', async (req,res)=>{
 
 // *************** Admin Manage WordFiltering REST Methods End **************
 
+// *************** Admin Manage Topic REST Methods **************
+
+
+//retrieve
+router.get("/adminmanage/forum/get", async (req, res) => {
+    try{
+      Forum.find().sort('-createdAt')
+      .then((ForumList)=>{
+          res.status(200).json(ForumList)
+      }).catch((err)=>{
+          console.log(err);
+      })
+  }catch{
+      return res.status(400).json({ error: "Can't Find the top forum data" });
+  } 
+  });
+
+  //delete 
+router.delete('/adminmanage/topic/delete/:id',(req,res)=>{
+    Forum.findByIdAndRemove(req.params.id).exec((err,deletedTopic) =>{
+
+        if(err){
+            return res.status(400).json({
+                message:"Topic Deleting Process has Error" ,err
+            });
+        }
+
+        return res.status(200).json({
+            message:"Topic Deleted Successfully",deletedTopic
+        });
+    });
+}); 
+
+
+  // *************** Admin Manage Topic REST Methods End **************
+
 
 module.exports = router;
