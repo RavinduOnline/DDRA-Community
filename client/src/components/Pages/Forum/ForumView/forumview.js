@@ -54,7 +54,7 @@ const getUser= () =>{
                 <hr/>
 
                 <div className='forumview-topic-desc'>
-                    <div>{forum.Body}</div>
+                    <div dangerouslySetInnerHTML={{__html: forum.Body}}></div>
 
                     <img src={forum.Pic} />
 
@@ -64,7 +64,7 @@ const getUser= () =>{
             <div className='forumview-reply'>
                 <div className='forumview-btn-container'>
                     <div className='forumview-topic-txt'>
-                        <h6 className='forumview-topic-txt-reply'>Replies</h6>
+                        <h6  className='forumview-topic-txt-reply'>Replies</h6>
                     </div>
                 </div>
 
