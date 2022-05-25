@@ -1,5 +1,4 @@
 import React,{useState, useEffect} from 'react'
-import {Navigate} from "react-router-dom"
 import './dashboard.css'
 import Footer from '../../Footer/footer'
 import SideMenu from '../../SideMenu/menu'

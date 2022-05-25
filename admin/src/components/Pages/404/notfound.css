@@ -1,0 +1,23 @@
+.notfound-box{
+   background-color: white;
+   background-image: url("../404/404-error.svg");
+   background-repeat: no-repeat;
+    width: 100%;
+   height: 89vh;
+   background-position: center;
+}
+
+.notfound-box-main{
+    background-color:  #001925;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.notfound-box-main a{
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    font-weight: 700;
+}
