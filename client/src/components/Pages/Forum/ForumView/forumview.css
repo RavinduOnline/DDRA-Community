@@ -22,6 +22,24 @@
     font-size: 0.9rem;
 }
 
+.forum-img{
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.forum-img img{
+  min-width: 75vh;
+  height:20%;
+  width: 75%;
+  max-width: 150vh;
+  max-height: 50vh;
+  min-height: 25vh;
+}
+
 .forumview-btn-container{
     margin:10px 10px 10px 10px;
     position: relative;  
