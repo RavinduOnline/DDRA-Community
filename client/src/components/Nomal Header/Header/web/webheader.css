@@ -14,10 +14,7 @@
     border-style: solid;
     border-color: white;
     padding: 5px 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+
 }
 
 .web-menu-user-name{
@@ -40,11 +37,5 @@
     border-color: white;
 }
 
- .logout-header{
-     margin-left: 10px;
-     color: white ;
- }
+ 
 
- .logout-header:hover{
-    color: tomato;
- }

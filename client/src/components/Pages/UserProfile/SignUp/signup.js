@@ -1,6 +1,6 @@
 import React from 'react';
 import './signup.css'
-import Header from '../../../Header/header'
+import Header from '../../../Nomal Header/Header/header'
 import Footer from '../../../Footer/footer'
 import SignUpForum from './SignUpForum/signupforum'
 
