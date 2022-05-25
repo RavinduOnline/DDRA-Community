@@ -75,8 +75,8 @@ const getUser= () =>{
                    
                 </div>
                 
-                <ReplyHome  getForumid={forum._id} GetUser={userObj}/ > 
-                <Replycard  getForumid={forum._id} />
+                <ReplyHome  getForumid={forum._id} GetUser={userObj} /> 
+                <Replycard  getForumid={id} />
             </div>
 
         <Footer/>

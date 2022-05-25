@@ -7,8 +7,15 @@ const Reply = require("../models/reply");
 
 
 router.get('/reply' , (req, res)=>{
-
-    res.send("Reply Verified")
+    try{
+        Reply.find().then((ReplyList)=>{
+            res.status(200).json(ReplyList)
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }catch{
+        return res.status(400).json({ error: "Can't Find the top Reply data" });
+    } 
   
  });
 
@@ -40,10 +47,11 @@ router.post('/replycreate',async (req,res) => {
 
 
 //Get Specific Word
-router.get('/reply/:id', async (req,res)=>{
+router.get('/reply/single/:id', async (req,res)=>{
     
     try{
-        Reply.find({forum_id:req.params.id})
+        const id = req.params.id;
+        Reply.find({forum_id:id})
         .populate("user","_id fName lName")
         .then((ReplyData)=>{
             res.status(200).json(ReplyData)
