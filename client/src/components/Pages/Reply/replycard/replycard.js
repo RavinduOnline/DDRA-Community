@@ -34,10 +34,6 @@ export default function Replycard({getForumid}) {
                 
                 <p><b>{getReplies.name}</b></p>
                 <div dangerouslySetInnerHTML={{__html: getReplies.reply}}></div>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-trash-can"></i>
-                <a href="/replyupdate"><i class="fa-solid fa-pen-to-square"></i></a>
-
             </div>
 
         </div>

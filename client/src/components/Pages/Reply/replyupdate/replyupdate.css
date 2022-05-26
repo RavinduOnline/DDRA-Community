@@ -1,7 +1,7 @@
 
 .replycard-react-quill{
     margin: 10px 0px;
-    height: auto;
+    height: 400px;
     border-radius: 10px;    
 }
 
@@ -41,6 +41,10 @@
   }
 
   .replyupdate-marjin{
-      margin-bottom: 15px;
+      margin: 10px;
       height: 80vh;
   }
+
+#replyUpdate-alert{
+    display: none;
+}

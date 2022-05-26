@@ -90,9 +90,8 @@ export default function Updateprofile() {
 
   return (
     <div>
-
-        <Header/>
         <ToastContainer/>
+        <Header/>
 
         <div>
           <div className='updatepro-details'>
