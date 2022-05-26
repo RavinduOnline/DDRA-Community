@@ -74,7 +74,7 @@ router.get('/reply/user/:id', async (req,res)=>{
         const id = req.params.id;
         Reply.find({user:id})
         .populate("forum_id","_id Title")
-        .sort('-createdAt')
+        .sort('created_at')
         .then((ReplyData)=>{
             res.status(200).json(ReplyData)
         }).catch((err)=>{
