@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react'
 import Header from '../../../Header/header'
 import './profile.css'
 import ForumCard from '../../Forum/Home/ForumCard/forumcard'
+import ReplyCard from '../../Reply/profile reply/profilereply'
 import Ppic from'./Profile.jpg'
 import Footer from '../../../Footer/footer'
 
@@ -61,14 +62,17 @@ export default function Profile() {
         </div>
 
         <div className='profile-filter-container'>
-          <div className='profile-filter'>
-            <button className='profile-filter-btn' onclick="filterSelection('popular')"> Popular</button>
-            <button className='profile-filter-btn' onclick="filterSelection('latest')"> Forum</button>
-            <button className='profile-filter-btn' onclick="filterSelection('latest')"> Replies</button>
-          </div>
+               <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="profile-filter-btn active" id="Forum-tab" data-bs-toggle="tab" data-bs-target="#Forum" type="button" role="tab" aria-controls="Forum" aria-selected="false">Forum</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="profile-filter-btn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Replies</button>
+                        </li>
+              </ul>
         </div>
 
-        <div>
+        {/* <div>
           <form >
             <input id="profile-searchNav" type="search" placeholder="Search" aria-label="Search" /> 
           </form>
@@ -77,14 +81,21 @@ export default function Profile() {
         <div className='profile-topic-txt'>
             <h6 className='profile-topic-txt-topic'>Topic</h6>
             <h6 className='profile-topic-txt-reply'>Reply</h6>
-        </div>
+        </div> */}
 
-        <br/>
-        <hr/>
-
-        <div className='profile-card-container'>
-          <ForumCard/>
-        </div> 
+        <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="Forum" role="tabpanel" aria-labelledby="Forum-tab">
+                              <div className='home-card-container'>
+                                <ForumCard/>
+                              </div>
+          
+              </div>
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"> 
+                                  <div className='home-card-container'>
+                                  <ReplyCard/>
+                                  </div>
+                </div>
+              </div> 
 
         <Footer/>
 

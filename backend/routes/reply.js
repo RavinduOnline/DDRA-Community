@@ -46,13 +46,14 @@ router.post('/replycreate',async (req,res) => {
 })
 
 
-//Get Specific Word
+//Get Specific Reply
 router.get('/reply/single/:id', async (req,res)=>{
     
     try{
         const id = req.params.id;
         Reply.find({forum_id:id})
         .populate("user","_id fName lName")
+        .sort('-createdAt')
         .then((ReplyData)=>{
             res.status(200).json(ReplyData)
         }).catch((err)=>{
@@ -65,5 +66,25 @@ router.get('/reply/single/:id', async (req,res)=>{
 
 });
 
+
+//Get Specific Reply for User
+router.get('/reply/user/:id', async (req,res)=>{
+    
+    try{
+        const id = req.params.id;
+        Reply.find({user:id})
+        .populate("forum_id","_id Title")
+        .sort('-createdAt')
+        .then((ReplyData)=>{
+            res.status(200).json(ReplyData)
+        }).catch((err)=>{
+            console.log(err);
+            return res.status(400).json({ error: "Something has error" });
+        })
+    }catch{
+        return res.status(400).json({ error: "Something has error" });
+    }
+
+});
 
 module.exports = router;
