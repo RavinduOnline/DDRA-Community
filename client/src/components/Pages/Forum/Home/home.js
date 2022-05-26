@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useState } from "react";
 import Header from '../../../Header/header'
 import ForumCard from '../Home/ForumCard/forumcard'
 import ForumCardPopular from '../Home/ForumCard/forumcardpopuler'
@@ -7,7 +7,11 @@ import './home.css'
 import './newtopic'
 import Footer from '../../../Footer/footer'
 
-export default function home() {
+export default function Home() {
+
+  const [SearchWord , setSearchWord] = useState("");
+
+
   return (
     <div>
         <Header/>
@@ -15,7 +19,13 @@ export default function home() {
 
         <div>
           <form >
-            <input id="home-searchNav" type="search" placeholder="Search" aria-label="Search" /> 
+            <input id="home-searchNav" 
+                   type="search" 
+                   placeholder="Search" 
+                   aria-label="Search" 
+                   value={SearchWord}
+                   onChange={(e) => setSearchWord(e.target.value)}
+            /> 
           </form>
         </div>
 
@@ -47,7 +57,7 @@ export default function home() {
                         <hr/>
                         
                         <div className='home-card-container'>
-                          <ForumCard/>
+                          <ForumCard searchKey={SearchWord} />
                         </div>
     
                     </div>

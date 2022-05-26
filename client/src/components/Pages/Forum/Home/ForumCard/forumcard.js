@@ -4,12 +4,20 @@ import '../../../Reply/replycard/replycard'
 
 import React , { useState, useEffect } from "react";
 
-export default function Forumcard() {
+export default function Forumcard({searchKey}) {
+
   const [forum , setForum] = useState([]);
+  const [SearchWord , setSearchWord] = useState("");
+  const [searchText , setSearchText ]  = useState("")
 
   useEffect(() => {
     retrieveForum();
   }, []);
+
+  useEffect(() => {
+    setSearchWord(searchKey)
+    console.log(searchKey)
+  }, [searchKey]);
 
   const retrieveForum = () =>{
     fetch("/forumget").then(res=>res.json())
@@ -21,8 +29,43 @@ export default function Forumcard() {
           console.log("Err Axios - ",err)
       })
 
-
     }
+
+        /*--------------------------------- Search FU Start -------------------------------*/
+
+    useEffect(() => {
+      console.log(SearchWord)
+          if(SearchWord){
+            setSearchText(SearchWord)
+            handleSearchArea();
+          }
+          if(SearchWord === ""){
+            retrieveForum();
+          }
+    }, [SearchWord]);    
+          
+    const   handleSearchArea = () =>{
+                  
+          fetch("/forumget").then(res=>res.json())
+                .then(result =>{
+                  if(result){
+                    filterData(result,SearchWord.toLowerCase());
+                  }
+
+                });
+    }
+
+    const filterData = (forum,searchKey) => {
+      console.log(forum)
+      const result = forum.filter((forum) =>
+         forum.Title.toLowerCase().includes(searchKey)        );
+         setForum(result)
+  
+    }
+
+
+  /*--------------------------------- Search FU End -------------------------------*/
+
     
 
   return (
