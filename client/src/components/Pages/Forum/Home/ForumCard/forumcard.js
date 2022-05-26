@@ -40,7 +40,6 @@ export default function Forumcard() {
           </div>
           
           <span>
-            <h5>40</h5>
             <i class="fa-solid fa-heart"></i>
           </span>
 

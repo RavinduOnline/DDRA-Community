@@ -46,6 +46,21 @@ router.get("/forumget", async (req, res) => {
     return res.status(400).json({ error: "Can't Find the top forum data" });
 } 
 });
+
+
+//retrieve without newest order
+router.get("/forum/normal/get", async (req, res) => {
+    try{
+      Forum.find()
+      .then((ForumList)=>{
+          res.status(200).json(ForumList)
+      }).catch((err)=>{
+          console.log(err);
+      })
+  }catch{
+      return res.status(400).json({ error: "Can't Find the top forum data" });
+  } 
+  });
   
 
   router.get("/forumget/one/:id", async (req, res) => {
