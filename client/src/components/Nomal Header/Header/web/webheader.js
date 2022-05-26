@@ -3,33 +3,6 @@ import "./webheader.css"
 
 
 export default function Webheader() {
-    const islogin = JSON.parse(localStorage.getItem("user"))
-
-    useEffect(() => {
-      console.log(islogin)
-        if(!islogin){
-          window.location.replace('/signin');
-        }
-    },[islogin]);
-
-    useEffect(() => {
-      ReadData();
-    },[]);
-
-let userData =""
-const [userObj , setUserObj] = useState("")
-
-const ReadData = () => {
-   userData = localStorage.getItem("user");
-   setUserObj(JSON.parse(userData))
-   console.log(userObj.fName +" "+ userObj.lName)
-}
-
-const LogOut = () => {
-  localStorage.clear()
-  window.location.replace('/signin');
-  
-}
 
 
   return (
@@ -54,19 +27,10 @@ const LogOut = () => {
                                     </a>
                             </div>
 
-                        <div className='web-menu-user-box'>
+                            <div className='web-menu-user-box'>
                                  <a  className="text-white web-menu-user-name-a" href="/profile" >
-                                    <img
-                                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                                        className="rounded-circle header-profile-pic "
-                                        alt="Profile Pic"
-                                        loading="lazy"
-                                    /> 
-
-                                     <div className="web-menu-user-name">{userObj.fName} {userObj.lName}</div>
-                                    </a>
-                                    <a onClick={() => LogOut()} className="logout-header">
-                                      <div> <i class="fa-solid fa-right-from-bracket"></i> </div>
+                                   
+                                     <div className="web-menu-user-name">Signup / Signin</div>
                                     </a>
                          </div>
                                 {/* <!-- Right elements --> */}

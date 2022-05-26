@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from "react";
 import './signin.css'
 import {Link} from 'react-router-dom'
-import Header from '../../../Header/header'
+import Header from '../../../Nomal Header/Header/header'
 import Footer from '../../../Footer/footer'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
