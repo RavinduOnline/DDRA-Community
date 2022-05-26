@@ -41,6 +41,10 @@
       width: 60%;
   }
 
+  .profile-td img{
+    border-radius: 50%;
+}
+
   /* Start Filter buttons */
   .profile-filter-container{
       margin: 30px 40px 30px 30px;

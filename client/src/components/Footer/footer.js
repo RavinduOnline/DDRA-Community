@@ -6,7 +6,7 @@ export default function footer() {
     <div>
 
         <footer>
-            <p  className='footer-copyright'>Developed with ❤️ by &nbsp; <a href="#">TeamX</a></p>
+            <p  className='footer-copyright'>Developed with ❤️ by &nbsp; <a href="/aboutus">TeamX</a></p>
         </footer>
 
     </div>

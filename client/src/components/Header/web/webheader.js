@@ -49,7 +49,7 @@ const LogOut = () => {
                                     </a>
                             </div>
                             <div className="web-menu-item">
-                                    <a className='nav-link text-white text-uppercase' href="/#Skills">
+                                    <a className='nav-link text-white text-uppercase' href="/aboutus">
                                         About Us
                                     </a>
                             </div>

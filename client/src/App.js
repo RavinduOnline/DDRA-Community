@@ -13,6 +13,7 @@ import ForumView from './components/Pages/Forum/ForumView/forumview';
 import ProfileForum from './components/Pages/Forum/ProfileForum/profileforum';
 import ProfileForumEdit from './components/Pages/Forum/ProfileForum/forumedit';
 import ReplyUpdate from './components/Pages/Reply/replyupdate/replyupdate';
+import AboutUs from './components/Pages/About Us/about';
 import Test from './components/test';
 import NotFound from './components/Pages/404/notfound';
 
@@ -33,6 +34,7 @@ function App() {
               <Route path="/profile-forum" element={<ProfileForum/>}/>
               <Route path="/profile-forum-edit" element={<ProfileForumEdit/>}/>
               <Route path="/replyupdate" element={<ReplyUpdate/>}/>
+              <Route path="/aboutus" element={<AboutUs/>}/>
               <Route path="/test" element={<Test/>}/>
               <Route path="*" element={<NotFound/>}/>
 

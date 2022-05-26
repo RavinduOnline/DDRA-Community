@@ -14,7 +14,7 @@ export default function header() {
                             {/* <!-- Collapsible wrapper --> */}
                             <div className='navbar-nav header-user-box'>
                                     {/* <!-- Navbar brand --> */}
-                                    <a href="#Logo">
+                                    <a href="/">
                                         <img
                                         className="header-logo"
                                         src={Logo}
