@@ -1,5 +1,7 @@
 import React , { useState, useEffect } from "react";
 import '../replycard/replycard.css'
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Profilereply() {
     const [ReplyObj , setReplyObj] = useState([])
@@ -25,6 +27,38 @@ export default function Profilereply() {
             console.log("Error - ",err)
         })
     }
+
+
+
+const ReplyDelete = (id) =>{
+  fetch('/reply/delete/' + id, {
+    method: 'DELETE',
+  }).then(res=>res.json())
+  .then((data) =>{
+
+    if(data.error){ 
+      toast.error(data.error,{
+        theme: "colored",
+      });
+    }
+    else{
+      toast.error(data.message,{
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        icon: false,
+      });
+      getreply();
+    }
+
+  })
+  .catch((err)=>{
+    console.log(err)
+   })
+}
 
        /*--------------------------------- Search FU Start -------------------------------*/
 
@@ -66,6 +100,7 @@ export default function Profilereply() {
 
   return (
     <div>
+      <ToastContainer/>
          <input 
             id="profile-searchNav" 
             type="search" 
@@ -83,9 +118,9 @@ export default function Profilereply() {
                 <a href={'/view-forum/'+ getReplies.forum_id._id}><p><b>{getReplies.forum_id.Title}</b></p></a>
                 <p>Reply :-</p>
                 <div dangerouslySetInnerHTML={{__html: getReplies.reply}}></div>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-trash-can"></i>
-                <a href="/replyupdate"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a onClick={() => ReplyDelete(getReplies._id)}><i class="fa-solid fa-trash-can"></i></a>
+                <a href={"/replyupdate/"+getReplies._id}><i class="fa-solid fa-pen-to-square"></i></a>
+
 
             </div>
             <hr/>

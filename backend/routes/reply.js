@@ -46,7 +46,7 @@ router.post('/replycreate',async (req,res) => {
 })
 
 
-//Get Specific Reply
+//Get Specific Reply for uniq forum
 router.get('/reply/single/:id', async (req,res)=>{
     
     try{
@@ -86,5 +86,76 @@ router.get('/reply/user/:id', async (req,res)=>{
     }
 
 });
+
+
+//Get Single Reply
+router.get('/reply/one/:id', async (req,res)=>{
+    
+    try{
+        const id = req.params.id;
+        Reply.findById(id)
+        .populate("user","_id fName lName")
+        .populate("forum_id","_id Title")
+        .sort('-createdAt')
+        .then((ReplyData)=>{
+            res.status(200).json(ReplyData)
+        }).catch((err)=>{
+            console.log(err);
+            return res.status(400).json({ error: "Something has error" });
+        })
+    }catch{
+        return res.status(400).json({ error: "Something has error" });
+    }
+
+});
+
+//update Reply
+router.put('/reply/update/:id', async (req,res)=>{
+
+    const {reply} = req.body;
+  try {
+        if(!reply){
+            return res.status(422).json({ error: "Please fill all the field" });
+        }
+
+        else{
+            Reply.findByIdAndUpdate(
+                req.params.id,{
+                    reply,
+                },
+                (err,post)=>{
+                    if(err){
+                        return res.status(400).json({
+                            error:err 
+                        });
+                    }
+
+                    return res.status(200).json({
+                        success:"Reply Updated Successfully"
+                    });
+                }
+            );
+        }
+
+  }catch{
+
+  }
+});
+
+//delete Reply
+router.delete('/reply/delete/:id',(req,res)=>{
+    Reply.findByIdAndRemove(req.params.id).exec((err,deletedReply) =>{
+
+        if(err){
+            return res.status(400).json({
+                message:"Word Deleting Process has Error" ,err
+            });
+        }
+
+        return res.status(200).json({
+            message:"Reply Deleted Successfully",deletedReply
+        });
+    });
+}); 
 
 module.exports = router;

@@ -33,7 +33,7 @@ function App() {
               <Route path="/view-forum/:id" element={<ForumView/>}/>
               <Route path="/profile-forum" element={<ProfileForum/>}/>
               <Route path="/profile-forum-edit" element={<ProfileForumEdit/>}/>
-              <Route path="/replyupdate" element={<ReplyUpdate/>}/>
+              <Route path="/replyupdate/:id" element={<ReplyUpdate/>}/>
               <Route path="/aboutus" element={<AboutUs/>}/>
               <Route path="/test" element={<Test/>}/>
               <Route path="*" element={<NotFound/>}/>
