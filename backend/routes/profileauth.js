@@ -104,10 +104,17 @@ router.get('/usersetting/:id',(req, res) => {
 // Reset password (Update)
 
 router.put('/resetpassword/:id', async (req, res)=>{
-    const {password, rePassword} = req.body;
-    let user = await User.findOne({ id:req.params.id });
+    const {oldPassword, password, rePassword} = req.body;
+    let user = await User.findOne({ id:req.params.id })
+
+    if(!oldPassword || !password || !rePassword){
+        res.status(422).json({error:"Please add all field"})
+    }
     
-    if (user) {
+    else if (user) {
+        const oldhashedPassword = await bcrypt.hash(oldPassword, 10)
+
+        if(oldhashedPassword){
         const hashedPassword = await bcrypt.hash(password, 10)
         User.findByIdAndUpdate(
             req.params.id,{
@@ -126,6 +133,8 @@ router.put('/resetpassword/:id', async (req, res)=>{
                 });
             }
         );
+        }
+        else{res.status(422).json({error:"Old password doesn't match"})}
       }
 
 
