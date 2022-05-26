@@ -35,7 +35,11 @@ export default function Replyupdate() {
       .then(response=>{
         console.log(response);
         setReplyObj(response);
-        ReplyObj.reply = onreply
+        setReply(response.reply)
+        onreply(response.reply)
+        console.log(replyInfo.reply);
+        console.log(response.reply);
+        console.log(reply);
     })
     .catch((err)=>{
         console.log("Error - ",err)
@@ -103,6 +107,7 @@ const ReplyUpdate = (id) =>{
               <ReactQuill 
               className="replycard-react-quill " 
               theme='snow'
+              value={replyInfo.reply}
               onChange={onreply}
               />
               <hr></hr>
