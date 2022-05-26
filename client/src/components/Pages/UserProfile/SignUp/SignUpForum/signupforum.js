@@ -70,15 +70,16 @@ export default function Signupforum() {
     <div> 
       <ToastContainer/>
 
-        <div>
-          <div className='signup-details'>
+        <div className='signup-details'>
+          <div className='signup-details-container'></div>
+          <div className='signup-details-container-box'>
             <h1>Welcome to.........!</h1>
                 <hr/>
 
                 <table>
                   <tr>
                     <td className='signup-td'><label for="fname"><b>First Name<br/></b></label></td>
-                    <td className='signup-input'>
+                    <td className='signup-input' id="signup-input-field">
                       <input type="text" 
                         placeholder="Enter First Name" 
                         name="fname" 
@@ -90,7 +91,7 @@ export default function Signupforum() {
 
                   <tr>
                     <td className='signup-td'><label for="lname"><b>Last Name<br/></b></label></td>
-                    <td className='signup-input'>
+                    <td className='signup-input' id="signup-input-field">
                       <input type="text" 
                         placeholder="Enter Last Name" 
                         name="lname" 
@@ -115,7 +116,7 @@ export default function Signupforum() {
 
                   <tr>
                     <td className='signup-td'><label for="interested"><b>Interested<br/></b></label></td>
-                    <td className='signup-input'>
+                    <td className='signup-input' id="signup-input-field">
                       <input type="text" 
                         placeholder="Enter interested" 
                         name="interested"
@@ -127,7 +128,7 @@ export default function Signupforum() {
 
                   <tr>
                   <td className='signup-td'><lable for="country"><b>Country</b></lable></td>
-                    <td>
+                    <td className='signup-input'>
                       <select name="country" 
                         id="country"
                         value={country}
@@ -168,8 +169,9 @@ export default function Signupforum() {
                 </table>
                 <div id="signup-alert" class="alert alert-danger" role="alert"/><br/>
 
-                <label>
-                <input type="checkbox" checked="checked" name="remember" /> Agree to the teams and condition
+                <label className="signup-checkbox">
+                  <input type="checkbox" name="remember" />
+                  <span className="checkmark"></span> <p>Agree to the teams and condition</p>
                 </label>
 
                 <div class="signup-button">
