@@ -9,6 +9,9 @@ export default function Topicmanagement() {
 
   const islogin = JSON.parse(localStorage.getItem("admin"))
   const [topic , setTopic] = useState([]);
+  const [SearchTopic , setSearchTopic] = useState("");
+  const [SelectCategory , setSelectCategory] = useState("");
+  const [searchText , setSearchText ]  = useState("")
 
 
   useEffect(() => {
@@ -21,6 +24,20 @@ export default function Topicmanagement() {
   useEffect(() => {
     retrieveTopic();
   }, []);
+
+  useEffect(() => {
+    if(SearchTopic){
+      setSearchText(SearchTopic)
+      handleSearchArea();
+    }
+    if(SelectCategory){
+      setSearchText(SelectCategory)
+      handleSearchArea();
+    }
+    if(SearchTopic === "" && SelectCategory === "" ){
+      retrieveTopic();
+    }
+}, [SearchTopic , SelectCategory]);
 
 
   const retrieveTopic = () =>{
@@ -67,6 +84,42 @@ export default function Topicmanagement() {
     }
 
 
+    /*--------------------------------- Search FU Start -------------------------------*/
+          
+    const   handleSearchArea = () =>{
+      console.log(SearchTopic)
+                  
+      fetch("/adminmanage/forum/get").then(res=>res.json())
+            .then(result =>{
+              if(result){
+                if(SearchTopic){
+                setSelectCategory("")
+                filterData(result,SearchTopic.toLowerCase());
+                }
+                else if(SelectCategory){
+                  filterData(result,SelectCategory.toLowerCase());
+                }
+              }
+
+            });
+}
+
+const filterData = (topic,searchKey) => {
+
+  const result = topic.filter((topic) =>
+        topic.Title.toLowerCase().includes(searchKey)||
+        topic.FCategory.toLowerCase().includes(searchKey)
+    );
+    setTopic(result)
+
+}
+
+
+/*--------------------------------- Search FU End -------------------------------*/
+
+
+
+
   return (
     <div>
         <ToastContainer/>
@@ -82,10 +135,18 @@ export default function Topicmanagement() {
               </div>
 
               <div className='topic-manage-top-items'>
-                 <input className='topic-manage-search' type="text" placeholder="Search.." />
+                 <input className='topic-manage-search' 
+                        type="text" 
+                        placeholder="Search.." 
+                        value={SearchTopic}
+                        onChange={(e) => setSearchTopic(e.target.value)}
+                        />
 
-                  <select name="cars" id="cars">
-                        <option value="" selected disabled hidden> Select Category</option>
+                  <select name="cars" id="cars"
+                  value={SelectCategory}
+                  onChange={(e) => setSelectCategory(e.target.value)}
+                  >
+                        <option value="" selected  >All Category</option>
                         <option value="General">General</option>
                         <option value="JavaScript">Java Script</option>
                         <option value="HTML/CSS">HTML / CSS</option>
@@ -106,7 +167,6 @@ export default function Topicmanagement() {
                         <tr>
                           <th className='topic-mange-No-th' scope="col">#</th>
                           <th className='topic-mange-Topic-th' scope="col">Topic</th>
-                          <th className='topic-mange-Reply-th' scope="col">Replies</th>
                           <th className='topic-mange-Category-th' scope="col">Category</th>
                           <th className='topic-mange-Action-th' scope="col">Action</th>
                         </tr>
@@ -117,7 +177,6 @@ export default function Topicmanagement() {
                           <tr>
                             <td className='topic-mange-td' scope="row">{index+1}</td>
                             <td className='topic-mange-topic-td'><a className='nav-link' href='#er'>{getTopic.Title}</a></td>
-                            <td className='topic-mange-td'>50</td>
                             <td className='topic-mange-td'>{getTopic.FCategory}</td>
                             <td className='topic-mange-td'>
                               <a className=" btn btn-danger" id="deletetBtn" onClick={() =>onDelete(getTopic._id)}>

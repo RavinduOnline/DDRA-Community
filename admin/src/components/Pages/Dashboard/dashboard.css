@@ -32,16 +32,20 @@
 .Home-detail-box{
     min-height: 12vh;
     min-width: 180px;
+    width: 20%;
+    height: 30%;
     color: white;
-    padding: 3px 3px 3px 20px;
+    padding: 3px 3px 3px 3px;
     border-radius: 5px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .Home-detail-box h2{
     font-size: 20px;
     font-weight: 700;
-    margin: 0px 0px 8% 0px;
 }
 
 .Home-detail-box p{

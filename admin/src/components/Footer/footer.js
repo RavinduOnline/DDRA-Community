@@ -6,7 +6,7 @@ export default function footer() {
     <div>
       
       <footer>
-          <div className="footer-box" ><a href='/copyright'>© Copyright -<span>Team X</span> @SLIIT</a></div>
+          <div className="footer-box" >Developed with ❤️ by <a href="#">TeamX</a></div>
       </footer>
 
     </div>
