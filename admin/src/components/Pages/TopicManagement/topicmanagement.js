@@ -144,7 +144,7 @@ tableRows.push(ticketData);
 
 })
 
-doc.text("DDRS Community", 70, 8).setFontSize(13);
+doc.text("Developers & Designers Runtime Support Community", 23, 8).setFontSize(13);
 doc.text("Topic List", 14, 16).setFontSize(13);
 doc.text(`Report Generated Date - ${dateStr}`, 14, 23);
 
