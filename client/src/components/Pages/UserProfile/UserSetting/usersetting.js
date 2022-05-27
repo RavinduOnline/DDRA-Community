@@ -78,7 +78,7 @@ export default function Usersetting() {
                       <p>{user.country}</p>
                       <p>{user.email}</p>
                       <a href="/usersetting">
-                        <button type="submit" >Change Image</button>
+                        <button type="submit">Change Image</button>
                       </a>
                     </diV>
                 </div>

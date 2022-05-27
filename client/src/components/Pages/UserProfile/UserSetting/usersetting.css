@@ -136,6 +136,9 @@
     margin: 5px;
     border-radius: 10px;
     background-color: #0c9ad7;
+    height: 40px;
+    color: #E3E3E3;
+    font-weight: 700;
 }
 
 .usersetting-button-2 {
@@ -143,14 +146,17 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    margin: 15px;
+    padding: 10px;
 }
 
 .usersetting-button-2 button {
     width: 300px;
     margin: 5px;
     border-radius: 10px;
-    background-color: #26eb0c;
+    background-color: tomato;
+    height: 40px;
+    color: #E3E3E3;
+    font-weight: 700;
 }
 
 .usersetting-center {
@@ -166,6 +172,8 @@
     justify-content: left;
     width: 50%;
     margin: auto;
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
 .usersetting-cen-1 {
