@@ -73,7 +73,7 @@ export default function Signin() {
                     <div>
                         <h4>Hi....</h4>
                         <label for="email">Email</label><br/>
-                        <input type="text" 
+                        <input type="email" 
                           id="email" 
                           name="email"
                           value={email}

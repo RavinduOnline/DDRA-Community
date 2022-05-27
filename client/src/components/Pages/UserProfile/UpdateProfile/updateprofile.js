@@ -124,7 +124,7 @@ export default function Updateprofile() {
                   <tr>
                     <td className='updatepro-td'><label for="email"><b>Email<br/></b></label></td>
                     <td className='updatepro-input'>
-                      <input type="text" 
+                      <input type="email" 
                         placeholder="Enter Email" 
                         name="email"
                         value={email}

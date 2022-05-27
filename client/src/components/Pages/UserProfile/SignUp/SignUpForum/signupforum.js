@@ -104,7 +104,7 @@ export default function Signupforum() {
                   <tr>
                     <td className='signup-td'><label for="email"><b>Email<br/></b></label></td>
                     <td className='signup-input'>
-                      <input type="text" 
+                      <input type="email" 
                         placeholder="Enter Email" 
                         name="email" 
                         value={email}
