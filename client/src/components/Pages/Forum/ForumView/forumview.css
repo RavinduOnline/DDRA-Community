@@ -65,3 +65,21 @@
     margin-bottom: 5%;
 
   }
+
+  .Forum-Print-Btn{
+    width: 10%;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #19224D;
+    color: white;
+  }
+
+  .Forum-Print-Btn:hover{
+    background-color: #2b398d;
+  }
+
+  .forum-dwn-btn-div{
+    display: flex;
+    justify-content: right;
+    padding-right: 25px;
+  }
