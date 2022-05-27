@@ -42,7 +42,7 @@ const getUser= () =>{
       })
 }
   return (
-    <div>
+    <div className='forum-view-box-main'>
         <Header/>
 
             <div className='forumview-view'>

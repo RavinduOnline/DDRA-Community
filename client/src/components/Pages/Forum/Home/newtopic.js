@@ -9,6 +9,8 @@ import { ref, uploadBytes, getDownloadURL, listAll,list } from "firebase/storage
 import { storage } from "../../../Firebase Storage/firebase";
 import { v4 } from "uuid";
 import { useState, useEffect } from "react";
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 
@@ -104,10 +106,24 @@ const TopicCreateData =  () =>{
     .then(data => {
 
         if(data.error){ 
-              alert("Error" + data.error)
+          toast.error(data.error,{
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
         }
         else{
-          alert(data.message)
+          toast.success(data.message,{
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
           setTimeout(function(){
             window.location.replace('/');
           },1000);
@@ -124,6 +140,7 @@ const TopicCreateData =  () =>{
 
   return (
     <div>
+      <ToastContainer/>
         <Header/>
         <div className='newtopic-forum'>
           <div className='newtopic-forum-container'>
