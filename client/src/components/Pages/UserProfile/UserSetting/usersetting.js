@@ -6,6 +6,8 @@ import Footer from '../../../Footer/footer'
 import { Button , Modal } from 'react-bootstrap';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import jspdf from 'jspdf'
+import "jspdf-autotable" 
 
 export default function Usersetting() {
 
@@ -59,6 +61,30 @@ export default function Usersetting() {
           console.log(err)
          })
       }
+
+      // generate pdf ______________________
+      const generatePDF = tickets => {
+
+          
+        var doc = new jspdf("landscape");    
+        const date = Date().split(" ");        
+        const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+
+      doc.setTextColor(0, 0, 255);
+      doc.text("Developers & Designers Runtime Support Community", 35, 20).setFontSize(13);
+      doc.setTextColor(100);
+      doc.text("Name - " + tickets.fName +" "+ tickets.lName, 14, 45).setFontSize(13);
+      doc.text("Email - " + tickets.email, 14, 55).setFontSize(13);
+      doc.text("Country - " + tickets.country, 14, 64).setFontSize(13);
+      doc.text("Account Created Date - " + tickets.createdAt, 14, 75).setFontSize(13);
+      doc.text(`Report Generated Date - ${dateStr}`, 14, 82);
+
+      //right down width height
+      //   doc.addImage(tickets.Pic, 'JPEG', 170, 8, 25, 25);
+        
+      doc.save(tickets.fName + " Profile - DDRS Community.pdf");
+
+      };
 
   return (
     <div>
@@ -114,7 +140,7 @@ export default function Usersetting() {
                     <div className='usersetting-button-2'>
                     <button type="submit"
                       onClick={() => setDeleteModelshow(true)}>Disable Profile</button><br/>
-                    <button type="submit">Download User details Report</button>
+                    <button type="submit" onClick={() => generatePDF(user)}>Download User details Report</button>
                     </div>
                   
               </div>
