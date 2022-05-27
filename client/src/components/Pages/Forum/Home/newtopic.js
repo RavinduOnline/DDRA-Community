@@ -79,7 +79,7 @@ const TopicCreateData =  () =>{
         alert("Fill All")
         return
       }
-      if(userInfo.description.length < 10){
+      if(userInfo.description.length < 50){
         alert('Required, Add description minimum length 50 characters');
         return;
       }
