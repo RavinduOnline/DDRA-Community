@@ -62,11 +62,50 @@ export default function Forumprofile() {
           console.log(err)
          })
       }
+
+      /*--------------------------------- Search FU Start -------------------------------*/
+
+      useEffect(() => {
+        if(SearchWord){
+          handleSearchArea();
+        }
+        if(SearchWord === ""){
+          retrieveForum();
+        }
+  }, [SearchWord]);
+          
+ const   handleSearchArea = () =>{
+   console.log(forum)
+
+    const userDetails = JSON.parse(localStorage.getItem("user"))
+    console.log(userDetails._id)
+                  
+        fetch("/forum/user/"+userDetails._id).then(res=>res.json())
+              .then(result =>{
+                if(result){
+                  filterData(result,SearchWord.toLowerCase());
+                }
+
+              });
+  }
+
+  const filterData = (forum,searchKey) => {
+
+    const result = forum.filter((forum) =>
+        forum.Title.toLowerCase().includes(searchKey) || forum.Body.toLowerCase().includes(searchKey) ||
+        forum.Description.toLowerCase().includes(searchKey)
+        );
+        setForum(result)
+
+  }
+
+
+/*--------------------------------- Search FU End -------------------------------*/
   
       
   
     return (
-      <div>
+      <div className='update-forum-profile'>
           <ToastContainer/>
 
           <input 
