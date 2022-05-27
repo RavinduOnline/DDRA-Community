@@ -21,7 +21,7 @@ export default function Home() {
           <form >
             <input id="home-searchNav" 
                    type="search" 
-                   placeholder="Search" 
+                   placeholder="Search.." 
                    aria-label="Search" 
                    value={SearchWord}
                    onChange={(e) => setSearchWord(e.target.value)}
@@ -54,7 +54,6 @@ export default function Home() {
                           <h6 className='home-topic-txt-reply'></h6>
                         </div>
                         <br/>
-                        <hr/>
                         
                         <div className='home-card-container'>
                           <ForumCard searchKey={SearchWord} />
