@@ -154,8 +154,9 @@ export default function Updateprofile() {
 
                 <div className='updatepro-button-2'>
                 <button type="submit" 
+                  id="update-button-1"
                   onClick={() => UserUpdate(id)}>Update Profile</button><br/>
-                <button type="submit">Cancel</button>
+                <button type="submit" id="update-button-2">Cancel</button>
                 </div>
 
           </div>
