@@ -9,6 +9,7 @@ import UserSetting from './components/Pages/UserProfile/UserSetting/usersetting'
 import ResetPassword from './components/Pages/UserProfile/ResetPassword/resetpassword';
 import UpdateProfile from './components/Pages/UserProfile/UpdateProfile/updateprofile';
 import NewForum from './components/Pages/Forum/Home/newtopic';
+import UpdateForum from './components/Pages/Forum/Home/updatetopic';
 import ForumView from './components/Pages/Forum/ForumView/forumview';
 import ProfileForum from './components/Pages/Forum/ProfileForum/profileforum';
 import ProfileForumEdit from './components/Pages/Forum/ProfileForum/forumedit';
@@ -31,6 +32,7 @@ function App() {
               <Route exact path="/updateprofile" element={<UpdateProfile/>}/>
               <Route path="/add-forum" element={<NewForum/>}/>
               <Route path="/view-forum/:id" element={<ForumView/>}/>
+              <Route path="/forumupdate/:id" element={<UpdateForum/>}/>
               <Route path="/profile-forum" element={<ProfileForum/>}/>
               <Route path="/profile-forum-edit" element={<ProfileForumEdit/>}/>
               <Route path="/replyupdate/:id" element={<ReplyUpdate/>}/>

@@ -36,6 +36,42 @@ router.post("/forumcreate", async (req, res) => {
   }
 });
 
+//update 
+router.put('/forum/update/:id', async (req,res)=>{
+
+    const {Title, FCategory, Description, Body} = req.body;
+  try {
+        if(!Title || !FCategory || !Description || !Body){
+            return res.status(422).json({ error: "Please fill all the field" });
+        }
+
+        else{
+            Forum.findByIdAndUpdate(
+                req.params.id,{
+                    Title,
+                    FCategory,
+                    Description,
+                    Body,
+                },
+                (err,post)=>{
+                    if(err){
+                        return res.status(400).json({
+                            error:err 
+                        });
+                    }
+
+                    return res.status(200).json({
+                        success:"Forum Updated Successfully"
+                    });
+                }
+            );
+        }
+
+  }catch{
+
+  }
+});
+
 //retrieve
 router.get("/forumget", async (req, res) => {
   try{

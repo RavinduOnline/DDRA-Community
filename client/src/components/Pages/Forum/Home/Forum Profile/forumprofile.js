@@ -91,7 +91,7 @@ export default function Forumprofile() {
             
             <span>
                 <a onClick={() => ForumDelete(getforum._id)} ><i class="fa-solid fa-trash-can"></i></a>
-                <a href={"/replyupdate/"+getforum._id}><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href={"/forumupdate/"+getforum._id}><i class="fa-solid fa-pen-to-square"></i></a>
             </span>
   
             <div className='forumcard-category-box'>

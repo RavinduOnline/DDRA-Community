@@ -4,17 +4,11 @@ import './newtopic.css'
 import Footer from '../../../Footer/footer'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css' //quill's css important
-import axios from 'axios'
-
-import {useSelector} from 'react-redux'
-import {selectUser} from '../../../../feature/userSlice'
 import Editor from "react-quill/lib/toolbar";
-
 import { ref, uploadBytes, getDownloadURL, listAll,list } from "firebase/storage";
 import { storage } from "../../../Firebase Storage/firebase";
-
 import { v4 } from "uuid";
-import { useState, useEffect , useRef} from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
 
