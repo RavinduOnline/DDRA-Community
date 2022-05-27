@@ -42,7 +42,7 @@ const getUser= () =>{
       })
 }
   return (
-    <div>
+    <div className='forum-view-box-main'>
         <Header/>
 
             <div className='forumview-view'>
@@ -78,7 +78,9 @@ const getUser= () =>{
                 </div>
                 
                 <ReplyHome  getForumid={forum._id} GetUser={userObj} /> 
-                <Replycard  getForumid={id} />
+                <div className='forum-reply-view'>
+                    <Replycard  getForumid={id} />
+                </div>
             </div>
 
         <Footer/>

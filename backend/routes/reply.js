@@ -74,7 +74,7 @@ router.get('/reply/user/:id', async (req,res)=>{
         const id = req.params.id;
         Reply.find({user:id})
         .populate("forum_id","_id Title")
-        .sort('-createdAt')
+        .sort('created_at')
         .then((ReplyData)=>{
             res.status(200).json(ReplyData)
         }).catch((err)=>{
@@ -148,7 +148,7 @@ router.delete('/reply/delete/:id',(req,res)=>{
 
         if(err){
             return res.status(400).json({
-                message:"Word Deleting Process has Error" ,err
+                message:"Reply Deleting Process has Error" ,err
             });
         }
 

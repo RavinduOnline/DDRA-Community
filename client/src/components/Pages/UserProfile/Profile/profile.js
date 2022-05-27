@@ -1,10 +1,12 @@
 import React,{useState, useEffect} from 'react'
 import Header from '../../../Header/header'
 import './profile.css'
-import ForumCard from '../../Forum/Home/ForumCard/forumcard'
+import ForumCard from '../../Forum/Home/Forum Profile/forumprofile'
 import ReplyCard from '../../Reply/profile reply/profilereply'
 import Ppic from'./Profile.jpg'
 import Footer from '../../../Footer/footer'
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Profile() {

@@ -86,7 +86,9 @@ const ReplyUpdate = (id) =>{
                   progress: undefined,
                   theme: "colored",
                 });
-                window.location.replace('/profile');
+                setTimeout(function(){
+                  window.location.replace('/profile');
+                },1000);
               }
               
           }).catch((err)=>{

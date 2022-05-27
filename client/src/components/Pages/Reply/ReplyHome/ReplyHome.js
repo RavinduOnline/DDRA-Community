@@ -104,7 +104,7 @@ export default function ReplyHome({getForumid,GetUser}) {
                <button 
                 onClick={() => ReplyCreate() }
                className='replyhome-button-create'>Post</button>
-               <button className='replyhome-button-close'>Close</button>
+               <a href="/"><button  className='replyhome-button-close'>Close</button></a>
           </div>
 
 
