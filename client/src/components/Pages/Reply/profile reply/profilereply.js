@@ -101,6 +101,10 @@ const ReplyDelete = (id) =>{
   return (
     <div>
       <ToastContainer/>
+          <div className="reply-get-report">
+              <button>Get Report</button>
+          </div>
+
          <input 
             id="profile-searchNav" 
             type="search" 

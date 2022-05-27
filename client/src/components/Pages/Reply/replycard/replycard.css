@@ -34,4 +34,20 @@
     text-decoration: none;
   }
 
+  .reply-get-report{
+    display: flex;
+    justify-content: right;
+    padding-right: 50px;
+  }
 
+  .reply-get-report button{
+    width: 25%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #19224D;
+    color: white;
+  }
+
+  .reply-get-report button:hover{
+    background-color: #032c3f;
+  }
