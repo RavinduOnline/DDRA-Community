@@ -29,8 +29,10 @@ const forumSchema = new mongoose.Schema(
         type:Date,
         default: Date.now()
       },
-
-      user:Object,
+    User: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
 
       Comment_id:{
         type:mongoose.Schema.Types.ObjectId,

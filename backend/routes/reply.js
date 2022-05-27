@@ -148,7 +148,7 @@ router.delete('/reply/delete/:id',(req,res)=>{
 
         if(err){
             return res.status(400).json({
-                message:"Word Deleting Process has Error" ,err
+                message:"Reply Deleting Process has Error" ,err
             });
         }
 

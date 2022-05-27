@@ -88,6 +88,9 @@ const TopicCreateData =  () =>{
         return;
       }
 
+      const userDetails = JSON.parse(localStorage.getItem("user"))
+      console.log(userDetails._id)
+
       fetch("/forumcreate",{
         method:"post",
         headers:{
@@ -100,6 +103,7 @@ const TopicCreateData =  () =>{
           Description:MiniDescription,
           Body:userInfo.description,
           Pic:url,
+          User:userDetails._id,
 
         })
     }).then(res=>res.json())

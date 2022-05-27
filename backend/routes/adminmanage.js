@@ -190,17 +190,29 @@ router.get("/adminmanage/forum/get", async (req, res) => {
 
   //delete 
 router.delete('/adminmanage/topic/delete/:id',(req,res)=>{
-    Forum.findByIdAndRemove(req.params.id).exec((err,deletedTopic) =>{
 
+    Reply.deleteMany({forum_id:req.params.id}).exec((err,deletedReply) =>{
+        
         if(err){
             return res.status(400).json({
                 message:"Topic Deleting Process has Error" ,err
             });
         }
 
-        return res.status(200).json({
-            message:"Topic Deleted Successfully",deletedTopic
+        Forum.findByIdAndRemove(req.params.id).exec((err,deletedTopic) =>{
+
+            if(err){
+                return res.status(400).json({
+                    message:"Topic Deleting Process has Error" ,err
+                });
+            }
+    
+            return res.status(200).json({
+                message:"Topic Deleted Successfully",deletedTopic
+            });
         });
+
+
     });
 }); 
 
