@@ -112,7 +112,9 @@ const generatePDF = tickets => {
   const date = Date().split(" ");        
   const dateStr = date[1] + "-" + date[2] + "-" + date[3];
   
-    
+  const userDetails = JSON.parse(localStorage.getItem("user"))
+  const name = userDetails.fName +" "+ userDetails.lName
+  console.log(name)
 
 
 tickets.map(ticket => {
@@ -129,7 +131,7 @@ tableRows.push(ticketData);
 })
 
 doc.text("Developers & Designers Runtime Support Community", 23, 8).setFontSize(13);
-doc.text("Reply List", 14, 16).setFontSize(13);
+doc.text(name + "'s Reply List", 14, 16).setFontSize(13);
 doc.text(`Report Generated Date - ${dateStr}`, 14, 23);
 
 //right down width height
@@ -137,7 +139,7 @@ doc.text(`Report Generated Date - ${dateStr}`, 14, 23);
 
 doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8, }, startY:35});
 
-doc.save("Topic List - DDRS Community.pdf");
+doc.save(name +" Reply List - DDRS Community.pdf");
 
 };
 
