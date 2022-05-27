@@ -2,6 +2,9 @@ import React , { useState, useEffect } from "react";
 import '../replycard/replycard.css'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import jspdf from 'jspdf'
+import "jspdf-autotable" 
+
 
 export default function Profilereply() {
     const [ReplyObj , setReplyObj] = useState([])
@@ -98,11 +101,53 @@ const ReplyDelete = (id) =>{
 /*--------------------------------- Search FU End -------------------------------*/
 
 
+
+
+// generate pdf ______________________
+const generatePDF = tickets => {
+
+  const doc = new jspdf();       
+  const tableColumn = ["Forum", "Reply" , "Create Date"];      
+  const tableRows = [];        
+  const date = Date().split(" ");        
+  const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+  
+    
+
+
+tickets.map(ticket => {
+
+const ticketData = [
+      
+    ticket.forum_id.Title,     
+    ticket.reply,
+    ticket.created_at,
+];
+
+tableRows.push(ticketData);
+
+})
+
+doc.text("Developers & Designers Runtime Support Community", 23, 8).setFontSize(13);
+doc.text("Reply List", 14, 16).setFontSize(13);
+doc.text(`Report Generated Date - ${dateStr}`, 14, 23);
+
+//right down width height
+//doc.addImage(img, 'JPEG', 170, 8, 25, 25);
+
+doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8, }, startY:35});
+
+doc.save("Topic List - DDRS Community.pdf");
+
+};
+
+
+
   return (
     <div>
       <ToastContainer/>
           <div className="reply-get-report">
-              <button>Get Report</button>
+             <button className='Report-Btn' onClick={() => generatePDF(ReplyObj)}><i className="fa-solid fa-file-arrow-down"></i> &nbsp; Download Report</button>
           </div>
 
          <input 
