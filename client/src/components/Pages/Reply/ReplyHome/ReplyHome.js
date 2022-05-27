@@ -4,6 +4,8 @@ import Footer from '../../../Footer/footer'
 import './ReplyHome.css'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -60,7 +62,14 @@ export default function ReplyHome({getForumid,GetUser}) {
             alert("Error" + data.error)
       }
       else{
-        alert("Error" + data.message)
+        toast.success(data.message,{
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
         setTimeout(function(){
           window.location.replace('/');
         },1000);
@@ -79,7 +88,7 @@ export default function ReplyHome({getForumid,GetUser}) {
 
   return (
     <div>
-        
+             <ToastContainer/>
         
           <div className='reply-quil-boc'>
               <ReactQuill className="ReplyHome-react-quill" 
