@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import './topicmanagement.css'
 import SideMenu from '../../SideMenu/menu'
 import Footer from '../../Footer/footer'
+import jspdf from 'jspdf'
+import "jspdf-autotable" 
 
 export default function Topicmanagement() {
 
@@ -117,7 +119,43 @@ const filterData = (topic,searchKey) => {
 
 /*--------------------------------- Search FU End -------------------------------*/
 
+// generate pdf __________________________________________________________________
+const generatePDF = tickets => {
 
+  const doc = new jspdf();       
+  const tableColumn = ["Topic", "Category" , "Create Date"];      
+  const tableRows = [];        
+  const date = Date().split(" ");        
+  const dateStr = date[1] + "-" + date[2] + "-" + date[3];
+  
+    
+
+
+tickets.map(ticket => {
+
+const ticketData = [
+      
+    ticket.Title,     
+    ticket.FCategory,
+    ticket.createdAt,
+];
+
+tableRows.push(ticketData);
+
+})
+
+doc.text("DDRS Community", 70, 8).setFontSize(13);
+doc.text("Topic List", 14, 16).setFontSize(13);
+doc.text(`Report Generated Date - ${dateStr}`, 14, 23);
+
+//right down width height
+//doc.addImage(img, 'JPEG', 170, 8, 25, 25);
+
+doc.autoTable(tableColumn, tableRows, { styles: { fontSize: 8, }, startY:35});
+
+doc.save("Topic List - DDRS Community.pdf");
+
+};
 
 
   return (
@@ -156,8 +194,8 @@ const filterData = (topic,searchKey) => {
                   </select>
 
 
-                    <button className='Report-Btn'><i className="fa-solid fa-file-arrow-down"></i> &nbsp; Download Report</button>
-
+                    <button className='Report-Btn' onClick={() => generatePDF(topic)}><i className="fa-solid fa-file-arrow-down"></i> &nbsp; Download Report</button>
+                  
 
               </div>
 
