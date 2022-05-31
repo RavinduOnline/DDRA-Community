@@ -3,3 +3,4 @@ backend/.env
 admin/package-lock.json
 client/package-lock.json
 backend/package-lock.json
+.DS_Store

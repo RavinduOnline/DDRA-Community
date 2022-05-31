@@ -21,6 +21,16 @@ export default function Sidebar() {
           document.getElementById("signin-alert").innerHTML = "⚠️  &nbsp; &nbsp;Please fill all the field!";
           return
         }
+
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!emailAddress.match( /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+          
+          document.getElementById("signin-alert").style.display = "flex";
+          document.getElementById("signin-alert").innerHTML = "⚠️  &nbsp; &nbsp;Please enter valid email";
+          return
+
+        } 
         
                 fetch("/adminlogin",{
                     method:"post",

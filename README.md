@@ -45,7 +45,6 @@ In our group we planned to create community forum like Microsoft community/ stac
 
 
 
-How to Install and Run the Project
 
 
 
