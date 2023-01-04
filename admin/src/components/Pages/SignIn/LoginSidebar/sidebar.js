@@ -130,7 +130,7 @@ export default function Sidebar() {
                                           </div>
 
                                           <div className=" mt-3 side-bar-item alert alert-dark">
-                                            admin.test@ddrs.com <br/>
+                                            test@ddrs.com <br/>
                                             12345
                                           </div>
                                           

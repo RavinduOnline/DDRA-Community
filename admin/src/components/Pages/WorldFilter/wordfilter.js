@@ -41,6 +41,7 @@ export default function Wordfilter() {
 
   useEffect(() => {
     retrieveWords();
+    ReadData();
   }, []);
 
   useEffect(() => {
@@ -57,6 +58,15 @@ export default function Wordfilter() {
         }
   }, [SerchWord , SelectCategory]);
 
+
+  let userData ="";
+  const [userObj , setUserObj] = useState("");
+
+  const ReadData = () => {
+    userData = localStorage.getItem("admin");
+    setUserObj(JSON.parse(userData))
+    console.log(userObj.fName +" "+ userObj.lName)
+ }
 
   const retrieveWords = () =>{
     fetch(BackendURL + "/adminmanage/wordfilter").then(res=>res.json())
@@ -87,34 +97,42 @@ export default function Wordfilter() {
 
 
     const onDelete = (id) =>{
-      fetch(BackendURL + '/adminmanage/wordfilter/delete/' + id, {
-        method: 'DELETE',
-      }).then(res=>res.json())
-      .then((data) =>{
 
-        if(data.error){ 
-          toast.error(data.error,{
-            theme: "colored",
-          });
-        }
-        else{
-          toast.error(data.message,{
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            icon: false,
-          });
-          retrieveWords();
-        }
+      const isMatch = userObj.email !== "test@ddrs.com";
+
+      if(isMatch){
+          fetch(BackendURL + '/adminmanage/wordfilter/delete/' + id, {
+            method: 'DELETE',
+          }).then(res=>res.json())
+          .then((data) =>{
+
+            if(data.error){ 
+              toast.error(data.error,{
+                theme: "colored",
+              });
+            }
+            else{
+              toast.error(data.message,{
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                icon: false,
+              });
+              retrieveWords();
+            }
 
 
-      })
-      .catch((err)=>{
-        console.log(err)
-       })
+          })
+          .catch((err)=>{
+            console.log(err)
+          })
+      }
+      else{
+        alert("You are in an experience mood. You don't have permission to do this action.");
+      }
     }
 
     const WordUpdate = (id) =>{

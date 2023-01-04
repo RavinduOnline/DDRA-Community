@@ -27,6 +27,7 @@ export default function Topicmanagement() {
 
   useEffect(() => {
     retrieveTopic();
+    ReadData();
   }, []);
 
   useEffect(() => {
@@ -43,6 +44,14 @@ export default function Topicmanagement() {
     }
 }, [SearchTopic , SelectCategory]);
 
+  let userData ="";
+  const [userObj , setUserObj] = useState("");
+
+  const ReadData = () => {
+    userData = localStorage.getItem("admin");
+    setUserObj(JSON.parse(userData))
+    console.log(userObj.fName +" "+ userObj.lName)
+  }
 
   const retrieveTopic = () =>{
     fetch(BackendURL + "/adminmanage/forum/get").then(res=>res.json())
@@ -57,34 +66,43 @@ export default function Topicmanagement() {
     }
 
     const onDelete = (id) =>{
-      fetch( BackendURL + '/adminmanage/topic/delete/' + id, {
-        method: 'DELETE',
-      }).then(res=>res.json())
-      .then((data) =>{
 
-        if(data.error){ 
-          toast.error(data.error,{
-            theme: "colored",
-          });
+      const isMatch = userObj.email !== "test@ddrs.com";
+      
+      if(isMatch){
+
+          fetch( BackendURL + '/adminmanage/topic/delete/' + id, {
+            method: 'DELETE',
+          }).then(res=>res.json())
+          .then((data) =>{
+
+            if(data.error){ 
+              toast.error(data.error,{
+                theme: "colored",
+              });
+            }
+            else{
+              toast.error(data.message,{
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                icon: false,
+              });
+              retrieveTopic();
+            }
+
+
+          })
+          .catch((err)=>{
+            console.log(err)
+          })
         }
         else{
-          toast.error(data.message,{
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-            icon: false,
-          });
-          retrieveTopic();
+          alert("You are in an experience mood. You don't have permission to do this action.");
         }
-
-
-      })
-      .catch((err)=>{
-        console.log(err)
-       })
     }
 
 
