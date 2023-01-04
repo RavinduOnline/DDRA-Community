@@ -2,6 +2,8 @@ import React , { useState, useEffect } from "react";
 import { Button , Modal } from 'react-bootstrap';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url'
+
 
 
 
@@ -25,7 +27,7 @@ export default function Createmodel  ({ closeCreateModel , retrieveWordsReloard 
         }
         createHandleClose();
         
-                fetch("/adminmanage/wordfilter/create",{
+                fetch(BackendURL + "/adminmanage/wordfilter/create",{
                     method:"POST",
                     headers:{
                         "Content-Type":"application/json",

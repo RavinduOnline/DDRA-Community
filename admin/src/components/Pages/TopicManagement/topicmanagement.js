@@ -6,6 +6,8 @@ import SideMenu from '../../SideMenu/menu'
 import Footer from '../../Footer/footer'
 import jspdf from 'jspdf'
 import "jspdf-autotable" 
+import BackendURL from '../../url'
+
 
 export default function Topicmanagement() {
 
@@ -43,7 +45,7 @@ export default function Topicmanagement() {
 
 
   const retrieveTopic = () =>{
-    fetch("/adminmanage/forum/get").then(res=>res.json())
+    fetch(BackendURL + "/adminmanage/forum/get").then(res=>res.json())
         .then(response=>{
           console.log(response);
           setTopic(response);
@@ -55,7 +57,7 @@ export default function Topicmanagement() {
     }
 
     const onDelete = (id) =>{
-      fetch('/adminmanage/topic/delete/' + id, {
+      fetch( BackendURL + '/adminmanage/topic/delete/' + id, {
         method: 'DELETE',
       }).then(res=>res.json())
       .then((data) =>{
@@ -91,7 +93,7 @@ export default function Topicmanagement() {
     const   handleSearchArea = () =>{
       console.log(SearchTopic)
                   
-      fetch("/adminmanage/forum/get").then(res=>res.json())
+      fetch(BackendURL + "/adminmanage/forum/get").then(res=>res.json())
             .then(result =>{
               if(result){
                 if(SearchTopic){

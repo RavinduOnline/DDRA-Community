@@ -3,6 +3,7 @@ import './dashboard.css'
 import Footer from '../../Footer/footer'
 import SideMenu from '../../SideMenu/menu'
 import TopicTable from './TopicTable/topictable'
+import BackendURL from '../../url'
 
 export default function Dashboard (){
 
@@ -11,7 +12,7 @@ export default function Dashboard (){
         const [countdata , setData] = useState([]);
        
         const getCountingData = () =>{
-          fetch("/admindashboard/countdata").then(res=>res.json())
+          fetch(`${BackendURL}/admindashboard/countdata`,).then(res=>res.json())
           .then(response=>{
              setData(response);
              console.log(response)

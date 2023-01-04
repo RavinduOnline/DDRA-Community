@@ -1,5 +1,6 @@
 import React , { useState, useEffect } from "react";
 import './topictable.css'
+import BackendURL from '../../../url'
 
 export default function Topictable() {
 
@@ -11,7 +12,7 @@ export default function Topictable() {
 
 
   const retrieveTopic = () =>{
-    fetch("/adminmanage/forum/get").then(res=>res.json())
+    fetch(BackendURL + "/adminmanage/forum/get").then(res=>res.json())
         .then(response=>{
           console.log(response);
           setTopic(response);

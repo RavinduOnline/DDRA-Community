@@ -9,7 +9,9 @@ import WordFilter from './components/Pages/WorldFilter/wordfilter';
 import NotFound from './components/Pages/404/notfound';
 
 
+
 function App() {
+  
   return (
     <BrowserRouter>
         <Routes>

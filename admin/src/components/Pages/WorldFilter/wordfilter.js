@@ -6,6 +6,7 @@ import './worldfilter.css'
 import SideMenu from '../../SideMenu/menu'
 import Footer from '../../Footer/footer'
 import CreateModel from "./Create Model/createmodel"
+import BackendURL from '../../url'
 
 
 export default function Wordfilter() {
@@ -58,7 +59,7 @@ export default function Wordfilter() {
 
 
   const retrieveWords = () =>{
-    fetch("/adminmanage/wordfilter").then(res=>res.json())
+    fetch(BackendURL + "/adminmanage/wordfilter").then(res=>res.json())
         .then(response=>{
           console.log(response);
           setWord(response);
@@ -71,7 +72,7 @@ export default function Wordfilter() {
     }
 
   const getWord = (id) =>{
-      fetch("/adminmanage/word/" + id).then(res=>res.json())
+      fetch(BackendURL + "/adminmanage/word/" + id).then(res=>res.json())
           .then(response=>{
             console.log(response);
             setGetWordForum(response.word);
@@ -86,7 +87,7 @@ export default function Wordfilter() {
 
 
     const onDelete = (id) =>{
-      fetch('/adminmanage/wordfilter/delete/' + id, {
+      fetch(BackendURL + '/adminmanage/wordfilter/delete/' + id, {
         method: 'DELETE',
       }).then(res=>res.json())
       .then((data) =>{
@@ -126,7 +127,7 @@ export default function Wordfilter() {
       }
       updateHandleClose();
       
-              fetch("/adminmanage/wordfilter/update/"+id,{
+              fetch( BackendURL + "/adminmanage/wordfilter/update/"+id,{
                   method:"PUT",
                   headers:{
                       "Content-Type":"application/json",
@@ -171,7 +172,7 @@ export default function Wordfilter() {
           
        const   handleSearchArea = () =>{
                   
-              fetch("/adminmanage/wordfilter").then(res=>res.json())
+              fetch(BackendURL + "/adminmanage/wordfilter").then(res=>res.json())
                     .then(result =>{
                       if(result){
                         if(SerchWord){

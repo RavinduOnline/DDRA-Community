@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Link} from 'react-router-dom'
 import './sidebar.css'
 import DarkLogo from '../../../SideMenu/DDRS-Logo_DarkBlue.png'
+import BackendURL from '../../../url'
 
 
 export default function Sidebar() {
@@ -32,7 +33,7 @@ export default function Sidebar() {
 
         } 
         
-                fetch("/adminlogin",{
+                fetch(BackendURL + "/adminlogin",{
                     method:"post",
                     headers:{
                         "Content-Type":"application/json",
@@ -126,6 +127,11 @@ export default function Sidebar() {
                                                   <a className='nav-link forget-password' href="/forgotpassword">
                                                       Forgot Password
                                                   </a>
+                                          </div>
+
+                                          <div className=" mt-3 side-bar-item alert alert-dark">
+                                            admin.test@ddrs.com <br/>
+                                            12345
                                           </div>
                                           
                           </div>
