@@ -4,12 +4,12 @@
 In our group we planned to create community forum like Microsoft community/ stack overflow/ google account help community. We are planning to use MERN as our technology. As a user can log in to the system and create forum then get answers from community users. And as a admin, admin can manage forum and word filtering options.
 
 
-| IT Number     | Name          | Function | 
-| ------------- | ------------- | -------- |
-| IT20189730    | Silva K.R.R   | Admin  |
-| IT20148454    | Dilshan A.J.Y.J         | User Profile  |
-| IT20049218    | Perera T.A.S.S         | Forum  |
-| IT20021498    | Mudalige D.L.M        | Reply  |
+ Name          | Function | GitHub  |
+------------- | -------- | -------- |
+ Ravindu Rasanga   | Admin  |  <a href='https://github.com/RavinduOnline/' >RavinduOnline</a> |
+ JanithDilshan  | User Profile  |  <a href='https://github.com/JanithDilsh'>JanithDilsh</a> |
+ SudhariPerera   | Forum  |  <a href='https://github.com/MudaligeDLM' >MudaligeDLM</a> |
+ Denura Mudalige       | Reply  | <a href='https://github.com/SudhariPerera' >SudhariPerera</a> |
 
   <br>
 <b>Languages<b>
