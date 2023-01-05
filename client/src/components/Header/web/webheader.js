@@ -3,10 +3,11 @@ import "./webheader.css"
 
 
 export default function Webheader() {
-    const islogin = JSON.parse(localStorage.getItem("user"))
+    const islogin = JSON.parse(localStorage.getItem("user"));
+    const [avatar , setAvatar] = useState("https://mdbcdn.b-cdn.net/img/new/avatars/2.webp");
+    const [userObj , setUserObj] = useState("");
 
     useEffect(() => {
-      console.log(islogin)
         if(!islogin){
           window.location.replace('/signin');
         }
@@ -17,12 +18,10 @@ export default function Webheader() {
     },[]);
 
 let userData =""
-const [userObj , setUserObj] = useState("")
 
 const ReadData = () => {
    userData = localStorage.getItem("user");
-   setUserObj(JSON.parse(userData))
-   console.log(userObj.fName +" "+ userObj.lName)
+   setUserObj(JSON.parse(userData));
 }
 
 const LogOut = () => {
@@ -57,7 +56,7 @@ const LogOut = () => {
                         <div className='web-menu-user-box'>
                                  <a  className="text-white web-menu-user-name-a" href="/profile" >
                                     <img
-                                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                        src={ userObj.email === "test@ddrs.com" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLuYWNUxlV-B8JIYGhC8HHdm8AJBXvSENdwG5qbKijYKAiu1YJfw-dL5lnn_Nw7ShqsUg&usqp=CAU" : avatar }
                                         className="rounded-circle header-profile-pic "
                                         alt="Profile Pic"
                                         loading="lazy"

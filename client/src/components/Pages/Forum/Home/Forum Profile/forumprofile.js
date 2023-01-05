@@ -3,6 +3,7 @@ import '../ForumCard/forumcard.css'
 import React , { useState, useEffect } from "react";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../../url';
 
 export default function Forumprofile() {
 
@@ -20,7 +21,7 @@ export default function Forumprofile() {
     const userDetails = JSON.parse(localStorage.getItem("user"))
     console.log(userDetails._id)
 
-      fetch("/forum/user/"+userDetails._id).then(res=>res.json())
+      fetch( BackendURL + "/forum/user/"+userDetails._id).then(res=>res.json())
           .then(response=>{
             console.log(response);
             setForum(response);
@@ -34,7 +35,7 @@ export default function Forumprofile() {
 
     const ForumDelete = (id) =>{
 
-        fetch('/forum/delete/' + id, {
+        fetch( BackendURL + '/forum/delete/' + id, {
           method: 'DELETE',
         }).then(res=>res.json())
         .then((data) =>{
@@ -80,7 +81,7 @@ export default function Forumprofile() {
     const userDetails = JSON.parse(localStorage.getItem("user"))
     console.log(userDetails._id)
                   
-        fetch("/forum/user/"+userDetails._id).then(res=>res.json())
+        fetch( BackendURL + "/forum/user/"+userDetails._id).then(res=>res.json())
               .then(result =>{
                 if(result){
                   filterData(result,SearchWord.toLowerCase());

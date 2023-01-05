@@ -3,6 +3,7 @@ import React from 'react'
 import './signupforum.css'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../../url';
 
 export default function Signupforum() {
 
@@ -23,7 +24,7 @@ export default function Signupforum() {
               document.getElementById("signup-alert").innerHTML = "Please fill all the field!";
               return
     }
-    fetch("/user/signup",{
+    fetch(BackendURL + "/user/signup",{
       method:"post",
       headers:{
           "Content-Type":"application/json",

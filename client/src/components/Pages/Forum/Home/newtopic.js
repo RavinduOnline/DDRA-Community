@@ -11,6 +11,7 @@ import { v4 } from "uuid";
 import { useState, useEffect } from "react";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url'
 
 export default function Home() {
 
@@ -87,7 +88,7 @@ const TopicCreateData =  () =>{
       const userDetails = JSON.parse(localStorage.getItem("user"))
       console.log(userDetails._id)
 
-      fetch("/forumcreate",{
+      fetch(BackendURL + "/forumcreate",{
         method:"post",
         headers:{
             "Content-Type":"application/json",

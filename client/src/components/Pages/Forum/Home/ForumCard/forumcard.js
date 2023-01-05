@@ -1,6 +1,7 @@
 import './forumcard.css'
 import '../../ForumView/forumview'
 import '../../../Reply/replycard/replycard'
+import BackendURL from '../../../../url'
 
 import React , { useState, useEffect } from "react";
 
@@ -20,7 +21,7 @@ export default function Forumcard({searchKey}) {
   }, [searchKey]);
 
   const retrieveForum = () =>{
-    fetch("/forumget").then(res=>res.json())
+    fetch(BackendURL + "/forumget").then(res=>res.json())
         .then(response=>{
           console.log(response);
           setForum(response);
@@ -46,7 +47,7 @@ export default function Forumcard({searchKey}) {
           
     const   handleSearchArea = () =>{
                   
-          fetch("/forumget").then(res=>res.json())
+          fetch(BackendURL + "/forumget").then(res=>res.json())
                 .then(result =>{
                   if(result){
                     filterData(result,SearchWord.toLowerCase());

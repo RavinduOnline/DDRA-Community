@@ -1,5 +1,6 @@
 import React , { useState, useEffect } from "react";
 import './replycard.css'
+import BackendURL from '../../../url';
 
 export default function Replycard({getForumid}) {
 
@@ -13,7 +14,7 @@ export default function Replycard({getForumid}) {
     const getreply = () =>{
       const id = getForumid;
       console.log(id)
-      fetch("/reply/single/" + id).then(res=>res.json())
+      fetch(BackendURL + "/reply/single/" + id).then(res=>res.json())
           .then(response=>{
             console.log(response);
             setReplyObj(response);

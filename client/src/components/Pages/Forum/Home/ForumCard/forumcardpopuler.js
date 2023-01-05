@@ -1,6 +1,7 @@
 import './forumcard.css'
 import '../../ForumView/forumview'
 import '../../../Reply/replycard/replycard'
+import BackendURL from '../../../../url';
 
 import React , { useState, useEffect } from "react";
 
@@ -12,7 +13,7 @@ export default function Forumcardpopuler() {
     }, []);
   
     const retrieveForum = () =>{
-      fetch("/forum/normal/get").then(res=>res.json())
+      fetch(BackendURL + "/forum/normal/get").then(res=>res.json())
           .then(response=>{
             console.log(response);
             setForum(response);

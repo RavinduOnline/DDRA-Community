@@ -3,6 +3,7 @@ import './resetpassword.css'
 import {Link} from 'react-router-dom'
 import Header from '../../../Header/header'
 import Footer from '../../../Footer/footer'
+import BackendURL from '../../../url';
 
 export default function Resetpassword() {
 
@@ -22,7 +23,8 @@ export default function Resetpassword() {
       return
     }
     
-            fetch("/user/resetpassword/"+userDetails._id,{
+    if(userDetails.email !== "test@ddrs.com" ){
+            fetch(BackendURL + "/user/resetpassword/"+userDetails._id,{
                 method:"PUT",
                 headers:{
                     "Content-Type":"application/json",
@@ -48,6 +50,9 @@ export default function Resetpassword() {
             }).catch((err)=>{
               console.log("Error - ", err)
             })
+          }else{
+            alert("You are in an experience mood. You don't have permission to do this action.");
+          }
 
     }
 

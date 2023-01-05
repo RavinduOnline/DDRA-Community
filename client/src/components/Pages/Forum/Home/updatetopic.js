@@ -9,6 +9,7 @@ import Editor from "react-quill/lib/toolbar";
 import { useState, useEffect } from "react";
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url';
 
 export default function Updatetopic() {
  
@@ -35,7 +36,7 @@ export default function Updatetopic() {
 
     console.log(id)
 
-    fetch("/forumget/one/"+id).then(res=>res.json())
+    fetch(BackendURL + "/forumget/one/"+id).then(res=>res.json())
       .then(response=>{
         console.log(response.Body);
         setTitle(response.Title)

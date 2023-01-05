@@ -1,5 +1,6 @@
 import React , { useState, useEffect } from "react";
 import '../ProfileForum/profileforum.css';
+import BackendURL from '../../../url';
 
 export default function ProfileForum() {
     const [forum , setForum] = useState([]);

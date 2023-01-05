@@ -6,6 +6,7 @@ import Header from '../../../Nomal Header/Header/header'
 import Footer from '../../../Footer/footer'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url';
 
 export default function Signin() {
   const [email , setEmail] = useState("");
@@ -22,7 +23,7 @@ export default function Signin() {
           return
         }
         
-                fetch("/user/signin",{
+                fetch(BackendURL + "/user/signin",{
                     method:"post",
                     headers:{
                         "Content-Type":"application/json",
@@ -92,6 +93,12 @@ export default function Signin() {
                           type='submit' 
                           onClick={() => PostSignin() }>Login</button><br/><br/>
                         <Link className='nav-link ' to="/signup">Don't have an Account? | New User</Link>
+                    </div>
+
+                    <div className=" mt-3 side-bar-item alert alert-dark">
+                          <h5>Experience Mood Login</h5>
+                          <p className='m-0'>test@ddrs.com </p>
+                          <p className='m-0'>12345</p>
                     </div>
               </div>
           </div>

@@ -7,6 +7,7 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css' //quill's css important
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url';
 
 
 export default function Replyupdate() {
@@ -31,7 +32,7 @@ export default function Replyupdate() {
 
     console.log(id)
 
-    fetch("/reply/one/"+id).then(res=>res.json())
+    fetch(BackendURL + "/reply/one/"+id).then(res=>res.json())
       .then(response=>{
         console.log(response);
         setReplyObj(response);
@@ -54,7 +55,7 @@ const ReplyUpdate = (id) =>{
     return
   }
   
-          fetch("/reply/update/"+id,{
+          fetch(BackendURL + "/reply/update/"+id,{
               method:"PUT",
               headers:{
                   "Content-Type":"application/json",

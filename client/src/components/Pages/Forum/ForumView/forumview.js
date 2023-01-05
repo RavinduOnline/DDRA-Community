@@ -7,7 +7,8 @@ import React,{useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import Replycard from '../../Reply/replycard/replycard'
 import jspdf from 'jspdf'
-import "jspdf-autotable" 
+import "jspdf-autotable";
+import BackendURL from '../../../url'
 
 export default function Forumview() {
 
@@ -33,7 +34,7 @@ const getUser= () =>{
 }
 
   const Getforum = (id) =>{
-    fetch("/forumget/one/" + id).then(res=>res.json())
+    fetch(BackendURL+"/forumget/one/" + id).then(res=>res.json())
         .then(response=>{
           console.log(response);
           setForum(response);

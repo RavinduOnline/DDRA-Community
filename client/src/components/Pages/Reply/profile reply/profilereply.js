@@ -4,6 +4,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jspdf from 'jspdf'
 import "jspdf-autotable" 
+import BackendURL from '../../../url';
 
 
 export default function Profilereply() {
@@ -21,7 +22,7 @@ export default function Profilereply() {
         const userDetails = JSON.parse(localStorage.getItem("user"))
         console.log(userDetails._id)
 
-        fetch("/reply/user/"+userDetails._id).then(res=>res.json())
+        fetch(BackendURL + "/reply/user/"+userDetails._id).then(res=>res.json())
           .then(response=>{
             console.log(response);
             setReplyObj(response);
@@ -34,7 +35,7 @@ export default function Profilereply() {
 
 
 const ReplyDelete = (id) =>{
-  fetch('/reply/delete/' + id, {
+  fetch(BackendURL + '/reply/delete/' + id, {
     method: 'DELETE',
   }).then(res=>res.json())
   .then((data) =>{
@@ -79,7 +80,7 @@ const ReplyDelete = (id) =>{
     const userDetails = JSON.parse(localStorage.getItem("user"))
     console.log(userDetails._id)
                   
-        fetch("/reply/user/"+userDetails._id).then(res=>res.json())
+        fetch(BackendURL + "/reply/user/"+userDetails._id).then(res=>res.json())
               .then(result =>{
                 if(result){
                   filterData(result,SearchWord.toLowerCase());

@@ -7,6 +7,7 @@ import Ppic from'./Profile.jpg'
 import Footer from '../../../Footer/footer'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url';
 
 
 export default function Profile() {
@@ -16,15 +17,14 @@ export default function Profile() {
   }, []);
     
   const [user , setUser] = useState([]);
+  const [avatar , setAvatar] = useState(Ppic);
 
     const retrieveUser = () =>{
       const userDetails = JSON.parse(localStorage.getItem("user"))
       console.log(userDetails._id)
-      fetch("/user/usersetting/"+userDetails._id).then(res=>res.json())
+      fetch(BackendURL + "/user/usersetting/"+userDetails._id).then(res=>res.json())
           .then(response=>{
-            console.log(response);
             setUser(response);
-            console.log(user.lName)
         })
         .catch((err)=>{
             console.log("Err Axios - ",err)
@@ -42,7 +42,7 @@ export default function Profile() {
               <table className='profile-table'>
                 <tr>
                   <td className='profile-td'>
-                    <img src={Ppic} width="150" height="150"/>
+                    <img src={ user.email === "test@ddrs.com" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLuYWNUxlV-B8JIYGhC8HHdm8AJBXvSENdwG5qbKijYKAiu1YJfw-dL5lnn_Nw7ShqsUg&usqp=CAU" : avatar } width="150" height="150"/>
                   </td>
                   <td >
                     <h4>{user.fName} {user.lName}</h4>

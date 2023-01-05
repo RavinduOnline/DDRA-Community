@@ -4,6 +4,7 @@ import './updateprofile.css'
 import Footer from '../../../Footer/footer'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url';
 
 export default function Updateprofile() {
 
@@ -21,7 +22,8 @@ export default function Updateprofile() {
   const retrieveUser = () =>{
     const userDetails = JSON.parse(localStorage.getItem("user"))
     console.log(userDetails._id)
-    fetch("/user/usersetting/"+userDetails._id).then(res=>res.json())
+    
+    fetch(BackendURL + "/user/usersetting/"+userDetails._id).then(res=>res.json())
         .then(response=>{
           console.log(response);
           setFName(response.fName)
@@ -45,7 +47,9 @@ export default function Updateprofile() {
       return
     }
     
-            fetch("/user/updateprofile/"+id,{
+    const userDetails = JSON.parse(localStorage.getItem("user"))
+    if(userDetails.email !== "test@ddrs.com" ){
+            fetch( BackendURL + "/user/updateprofile/"+id,{
                 method:"PUT",
                 headers:{
                     "Content-Type":"application/json",
@@ -86,6 +90,10 @@ export default function Updateprofile() {
             }).catch((err)=>{
               console.log("Error - ", err)
             })
+      }
+      else{
+        alert("You are in an experience mood. You don't have permission to do this action.");
+      }
   }
 
   return (
@@ -156,8 +164,9 @@ export default function Updateprofile() {
                 <button type="submit" 
                   id="update-button-1"
                   onClick={() => UserUpdate(id)}>Update Profile</button><br/>
-                <button type="submit" id="update-button-2">Cancel</button>
+                <button onClick={() => window.location.href = "/usersetting"} type="submit" id="update-button-2">Cancel</button>
                 </div>
+
 
           </div>
 

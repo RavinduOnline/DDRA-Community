@@ -6,6 +6,7 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BackendURL from '../../../url';
 
 
 
@@ -23,9 +24,6 @@ export default function ReplyHome({getForumid,GetUser}) {
   } 
   const ReplyCreate = () =>{
 
-
-    
-
     if(!replyInfo ){
             
       alert("Fill All")
@@ -35,15 +33,10 @@ export default function ReplyHome({getForumid,GetUser}) {
       alert('Required, Add reply minimum length 10 characters');
       return;
     }
-
-
-
-
-
     const UserName = GetUser.fName +" "+ GetUser.lName;
   
 
-    fetch("/replycreate",{
+    fetch(BackendURL + "/replycreate",{
       method:"post",
       headers:{
           "Content-Type":"application/json",
@@ -71,7 +64,7 @@ export default function ReplyHome({getForumid,GetUser}) {
           theme: "colored",
         });
         setTimeout(function(){
-          window.location.replace('/');
+          window.location.replace('/view-forum/'+getForumid);
         },1000);
       }
         

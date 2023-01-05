@@ -8,28 +8,29 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jspdf from 'jspdf'
 import "jspdf-autotable" 
+import BackendURL from '../../../url';
 
 export default function Usersetting() {
 
   const [deleteModelshow, setDeleteModelshow] = useState(false);
   const deleteHandleClose = () => {setDeleteModelshow(false)}
   const deleteHandleShow = () => {setDeleteModelshow(true)}
+  const [avatar , setAvatar] = useState(Ppic);
+  const [user , setUser] = useState([]);
+
 
   useEffect(() => {
     retrieveUser();
   }, []);
     
-  const [user , setUser] = useState([]);
 
 
     const retrieveUser = () =>{
       const userDetails = JSON.parse(localStorage.getItem("user"))
       console.log(userDetails._id)
-      fetch("/user/usersetting/"+userDetails._id).then(res=>res.json())
+      fetch(BackendURL + "/user/usersetting/"+userDetails._id).then(res=>res.json())
           .then(response=>{
-            console.log(response);
             setUser(response);
-            console.log(user.lName)
         })
         .catch((err)=>{
             console.log("Err Axios - ",err)
@@ -38,28 +39,32 @@ export default function Usersetting() {
       }
 
       const ProfileDelete = (id) =>{
-        fetch('/user/disableprofile/' + id, {
-          method: 'DELETE',
-        }).then(res=>res.json())
-        .then((data) =>{
-  
-  
-  
-          if(data.error){ 
-            toast.error(data.error,{
-              theme: "colored",
-            });
-          }
-          else{
-            localStorage.clear()
-            window.location.replace('/signup');
-          }
-  
-  
-        })
-        .catch((err)=>{
-          console.log(err)
-         })
+
+        if(user.email !== "test@ddrs.com" ){
+            fetch(BackendURL + '/user/disableprofile/' + id, {
+              method: 'DELETE',
+            }).then(res=>res.json())
+            .then((data) =>{
+              if(data.error){ 
+                toast.error(data.error,{
+                  theme: "colored",
+                });
+              }
+              else{
+                localStorage.clear()
+                window.location.replace('/signup');
+              }
+      
+      
+            })
+            .catch((err)=>{
+              console.log(err)
+            })
+        }
+        else{
+          alert("You are in an experience mood. You don't have permission to do this action.");
+          setDeleteModelshow(false);
+        }
       }
 
       // generate pdf ______________________
@@ -97,7 +102,7 @@ export default function Usersetting() {
  
                 <div className='usersetting-cen'>
                     <diV className='usersetting-cen-1'>
-                      <img src={Ppic} />
+                      <img src={ user.email === "test@ddrs.com" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLuYWNUxlV-B8JIYGhC8HHdm8AJBXvSENdwG5qbKijYKAiu1YJfw-dL5lnn_Nw7ShqsUg&usqp=CAU" : avatar } />
                     </diV>
                     <diV className='usersetting-cen-2'>
                       <h4>{user.fName} {user.lName}</h4>
