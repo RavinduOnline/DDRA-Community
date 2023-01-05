@@ -6,3 +6,5 @@ backend/package-lock.json
 .DS_Store
 admin/.firebaserc
 admin/firebase.json
+client/.firebaserc
+client/firebase.json
