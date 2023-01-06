@@ -22,8 +22,8 @@ In our group we planned to create community forum like Microsoft community/ stac
 
   <br>
   
-# <b>Used Technologys</b>
-<b>Main Technologys<b>
+# <b>Used Technologies</b>
+<b>Main Technologies<b>
   <br>    <br>
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
 <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" />
@@ -33,7 +33,7 @@ In our group we planned to create community forum like Microsoft community/ stac
   
   <br>
   
-<b>Sub Technologys<b>
+<b>Sub Technologies<b>
     <br>    <br>
   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" />
   <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" />
